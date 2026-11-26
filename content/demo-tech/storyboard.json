@@ -1,0 +1,103 @@
+{
+  "title": "一份 Markdown 如何工程化变成高质量视频",
+  "theme": "dark-tech",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "chapters": ["引言", "核心概念", "终端实战", "对照", "工作流", "总结"],
+  "scenes": [
+    {
+      "id": "01",
+      "type": "hook",
+      "chapter": "引言",
+      "headline": "同样的工具，有人做出**发布会**，有人做出 PPT",
+      "subline": "区别不在模型，在背后的**工程化视频系统**",
+      "subtitle": "同样是用 AI 做视频，为什么差距这么大"
+    },
+    {
+      "id": "02",
+      "type": "grid",
+      "chapter": "核心概念",
+      "title": "撑起一条流水线的 **8 个核心积木**",
+      "columns": 4,
+      "cards": [
+        { "tag": "01", "title": "Markdown", "desc": "唯一内容输入源" },
+        { "tag": "02", "title": "Storyboard", "desc": "结构化分镜清单", "featured": true },
+        { "tag": "03", "title": "Zod Schema", "desc": "前置字数防溢出" },
+        { "tag": "04", "title": "Timeline", "desc": "帧级确定时间轴" },
+        { "tag": "05", "title": "Theme", "desc": "全局视觉与皮肤", "featured": true },
+        { "tag": "06", "title": "Mockup", "desc": "拟真界面演概念" },
+        { "tag": "07", "title": "Remotion", "desc": "React 逐帧渲染" },
+        { "tag": "08", "title": "FFmpeg", "desc": "本地零成本出片" }
+      ],
+      "subtitle": "这八块积木把创作和渲染彻底拆开了"
+    },
+    {
+      "id": "03",
+      "type": "chapter",
+      "chapter": "终端实战",
+      "number": "PART 02",
+      "title": "画面**演概念**，而不是念文字",
+      "subline": "用拟真窗口直接展示指令与执行结果",
+      "subtitle": "比起堆文字卡片，直接演示过程更有说服力"
+    },
+    {
+      "id": "04",
+      "type": "mockup",
+      "chapter": "终端实战",
+      "title": "一条命令跑通**校验与出片**",
+      "windowTitle": "texttovideo-cli",
+      "lines": [
+        { "role": "prompt", "text": "pnpm build:timeline demo-tech" },
+        { "role": "output", "text": "✓ Zod 校验通过：7 个场景，无字数溢出" },
+        { "role": "output", "text": "✓ 时间轴生成：1920×1080 @ 30fps" },
+        { "role": "highlight", "text": "✓ 渲染输出：out/demo-tech.mp4（本地渲染 0 token）" }
+      ],
+      "badges": ["01 拆结构", "02 校验帧", "03 稳定出片"],
+      "subtitle": "渲染烧的是本地算力，不按秒收模型费"
+    },
+    {
+      "id": "05",
+      "type": "compare",
+      "chapter": "对照",
+      "title": "大模型生成 vs **代码工程化**",
+      "before": {
+        "label": "纯文字卡 / 抽卡模式",
+        "points": [
+          "每屏堆满长句像翻页 PPT",
+          "改一个错字整段重来",
+          "风格与字号全片漂移"
+        ]
+      },
+      "after": {
+        "label": "Schema 工程管线",
+        "points": [
+          "按语义自动匹配示意组件",
+          "改一行 JSON 几秒重新出片",
+          "换一套 theme 全片立刻换肤"
+        ]
+      },
+      "subtitle": "内容和表现解耦后，返工成本降到最低"
+    },
+    {
+      "id": "06",
+      "type": "flow",
+      "chapter": "工作流",
+      "title": "换一篇文档，只需要走**三步**",
+      "steps": [
+        { "label": "AI 拆解分镜", "detail": "把长文提炼成短句与组件类型" },
+        { "label": "人工过一遍", "detail": "审掉长句和弱钩子，保住上限" },
+        { "label": "确定性出片", "detail": "抽帧验收通过，直接导出 MP4" }
+      ],
+      "subtitle": "系统建一次，后面每支视频都是分钟级"
+    },
+    {
+      "id": "07",
+      "type": "outro",
+      "chapter": "总结",
+      "conclusion": "语义活给 AI，**机械活给程序**",
+      "subline": "Dark Tech · 16:9 标杆皮肤",
+      "subtitle": "这就是工程化视频的真正底气"
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "title": "为什么你做的 AI 视频总像 PPT",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "totalFrames": 1795,
+  "totalSec": 59.83,
+  "scenes": [
+    {
+      "scene": {
+        "id": "01",
+        "type": "hook",
+        "kicker": "AI 视频避坑",
+        "headline": "同样的工具，有人做出发布会，有人做出 PPT",
+        "subline": "差距不在模型，在 4 个被跳过的细节"
+      },
+      "index": 0,
+      "startFrame": 0,
+      "durationInFrames": 165,
+      "readingSec": 5.5,
+      "itemTimings": [
+        {
+          "startFrame": 8,
+          "endFrame": 41
+        },
+        {
+          "startFrame": 41,
+          "endFrame": 158
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "02",
+        "type": "compare",
+        "kicker": "细节 01",
+        "title": "别把要点一屏全亮",
+        "before": {
+          "label": "PPT 做法",
+          "points": [
+            "所有文字一次性铺满",
+            "观众一眼扫完直接划走"
+          ]
+        },
+        "after": {
+          "label": "高留存做法",
+          "points": [
+            "要点按节奏逐条弹入",
+            "当前全亮，看过的暗下去"
+          ]
+        }
+      },
+      "index": 1,
+      "startFrame": 165,
+      "durationInFrames": 383,
+      "readingSec": 12.76,
+      "itemTimings": [
+        {
+          "startFrame": 20,
+          "endFrame": 178
+        },
+        {
+          "startFrame": 178,
+          "endFrame": 376
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "03",
+        "type": "bullets",
+        "kicker": "细节 02 & 03",
+        "title": "开场与转场决定完播",
+        "bullets": [
+          "开场 3 秒直接抛结论，别铺垫",
+          "场景交接清晰淡出，标题不打架",
+          "动画演完就定住，留出阅读时间"
+        ]
+      },
+      "index": 2,
+      "startFrame": 548,
+      "durationInFrames": 341,
+      "readingSec": 11.38,
+      "itemTimings": [
+        {
+          "startFrame": 20,
+          "endFrame": 108
+        },
+        {
+          "startFrame": 108,
+          "endFrame": 207
+        },
+        {
+          "startFrame": 207,
+          "endFrame": 334
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "04",
+        "type": "quote",
+        "kicker": "细节 04",
+        "highlight": "3 秒定生死",
+        "quote": "铺垫越久，划走越快；先勾住人，再讲道理。",
+        "caption": "配一条压低衬底的 BGM，氛围立刻拉满"
+      },
+      "index": 3,
+      "startFrame": 889,
+      "durationInFrames": 291,
+      "readingSec": 9.7,
+      "itemTimings": [
+        {
+          "startFrame": 20,
+          "endFrame": 48
+        },
+        {
+          "startFrame": 48,
+          "endFrame": 157
+        },
+        {
+          "startFrame": 157,
+          "endFrame": 284
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "05",
+        "type": "flow",
+        "kicker": "工程化底气",
+        "title": "每个环节都对应能改的文件",
+        "steps": [
+          {
+            "label": "storyboard.json",
+            "detail": "改文案与分镜，不动一行代码"
+          },
+          {
+            "label": "theme.ts",
+            "detail": "改配色与安全区，全片自动继承"
+          },
+          {
+            "label": "Scene 组件库",
+            "detail": "调好动效与版式，以后直接复用"
+          }
+        ]
+      },
+      "index": 4,
+      "startFrame": 1180,
+      "durationInFrames": 465,
+      "readingSec": 15.49,
+      "itemTimings": [
+        {
+          "startFrame": 20,
+          "endFrame": 165
+        },
+        {
+          "startFrame": 165,
+          "endFrame": 292
+        },
+        {
+          "startFrame": 292,
+          "endFrame": 458
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "06",
+        "type": "outro",
+        "kicker": "总结",
+        "conclusion": "系统建一次，以后换文档就出片",
+        "subline": "9:16 工程化视频流水线 V1"
+      },
+      "index": 5,
+      "startFrame": 1645,
+      "durationInFrames": 150,
+      "readingSec": 5,
+      "itemTimings": [
+        {
+          "startFrame": 8,
+          "endFrame": 68
+        },
+        {
+          "startFrame": 68,
+          "endFrame": 143
+        }
+      ]
+    }
+  ]
+}

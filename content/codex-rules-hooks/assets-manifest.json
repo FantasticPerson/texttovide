@@ -1,0 +1,21 @@
+{
+  "style": "dark-tech",
+  "assets": [
+    {
+      "id": "gate-and-trigger",
+      "type": "ai-image",
+      "filename": "gate-and-trigger.png",
+      "prompt": "a clean split conceptual diagram on deep space black background: on the left a sleek minimalist frosted glass security gate barrier glowing in emerald green, on the right a precision mechanical optical trigger sensor firing a crisp warm gold light beam, symmetrical centered composition with generous empty dark margins",
+      "size": "1280x720",
+      "revise": false
+    },
+    {
+      "id": "trust-shield",
+      "type": "ai-image",
+      "filename": "trust-shield.png",
+      "prompt": "a minimalist translucent dark emerald glass security shield with a crisp glowing geometric padlock and cryptographic hash verification checkmark ring floating in the center, soft emerald rim lighting, deep space black background with wide empty margins",
+      "size": "1280x720",
+      "revise": false
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+import { MONO_STACK, SANS_STACK, ThemeTokens } from "../types";
+
+export const darkTechTokens: ThemeTokens = {
+  id: "dark-tech",
+  name: "深空墨绿科技风",
+  isDark: true,
+  colors: {
+    bg: "#090B10",
+    bgGradient:
+      "radial-gradient(ellipse at 20% 15%, rgba(16, 185, 129, 0.08) 0%, rgba(9, 11, 16, 0) 55%), radial-gradient(ellipse at 82% 85%, rgba(20, 184, 166, 0.07) 0%, rgba(9, 11, 16, 0) 55%)",
+    gridLine: "rgba(148, 163, 184, 0.035)",
+    orbPrimary: "rgba(52, 211, 153, 0.14)",
+    orbSecondary: "rgba(45, 212, 191, 0.10)",
+    surface: "rgba(16, 30, 27, 0.58)",
+    surfaceActive: "rgba(16, 62, 50, 0.68)",
+    border: "rgba(52, 211, 153, 0.22)",
+    borderActive: "rgba(52, 211, 153, 0.72)",
+    textPrimary: "#F1F5F9",
+    textSecondary: "#94A3B8",
+    textMuted: "#64748B",
+    accent: "#34D399",
+    accentSoft: "rgba(52, 211, 153, 0.14)",
+    accentText: "#052E23",
+    negative: "#F87171",
+    negativeBg: "rgba(248, 113, 113, 0.09)",
+    negativeBorder: "rgba(248, 113, 113, 0.35)",
+    positive: "#34D399",
+    positiveBg: "rgba(52, 211, 153, 0.11)",
+    positiveBorder: "rgba(52, 211, 153, 0.45)",
+    windowBg: "rgba(13, 19, 24, 0.92)",
+    windowHeaderBg: "rgba(255, 255, 255, 0.04)",
+    subtitleBg: "transparent",
+    subtitleText: "#FEF3C7",
+  },
+  fonts: {
+    heading: SANS_STACK,
+    sans: SANS_STACK,
+    mono: MONO_STACK,
+  },
+};

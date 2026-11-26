@@ -1,0 +1,231 @@
+{
+  "title": "为什么好的视频都要先有视觉系统",
+  "theme": "warm-editorial",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "totalFrames": 1665,
+  "totalSec": 55.5,
+  "scenes": [
+    {
+      "scene": {
+        "id": "01",
+        "kicker": "视觉系统拆解",
+        "subtitle": "为什么光抄配色和字号，做出来还是像模板",
+        "type": "hook",
+        "headline": "视觉系统不是参数表，而是**审美决策模型**",
+        "subline": "让画面有秩序、有留白、有统一气质"
+      },
+      "index": 0,
+      "startFrame": 0,
+      "durationInFrames": 156,
+      "readingSec": 5.2,
+      "itemTimings": [
+        {
+          "startFrame": 6,
+          "endFrame": 35
+        },
+        {
+          "startFrame": 35,
+          "endFrame": 149
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "02",
+        "kicker": "01 / 认知纠偏",
+        "subtitle": "参数决定用什么，原则决定为什么这么用",
+        "type": "compare",
+        "title": "堆参数 vs **视觉决策体系**",
+        "before": {
+          "label": "只写 Tokens 参数",
+          "points": [
+            "字体和颜色各自合规",
+            "拼在一起还是不像同一个世界"
+          ]
+        },
+        "after": {
+          "label": "统一艺术指导",
+          "points": [
+            "先定整体气质与审美边界",
+            "构图、元素、动效服从同一方向"
+          ]
+        }
+      },
+      "index": 1,
+      "startFrame": 156,
+      "durationInFrames": 451,
+      "readingSec": 15.04,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 215
+        },
+        {
+          "startFrame": 215,
+          "endFrame": 444
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "03",
+        "kicker": "02 / 情绪反转屏",
+        "subtitle": "明暗节奏一拉开，看五分钟也不会腻",
+        "invert": true,
+        "type": "quote",
+        "highlight": "单屏暗色反转",
+        "quote": "在暖色系长视频里，遇到**底层原理或故障**时切一屏暗底，注意力立刻刷新。",
+        "caption": "支持按场景配置 invert: true，无需换整套主题"
+      },
+      "index": 2,
+      "startFrame": 607,
+      "durationInFrames": 404,
+      "readingSec": 13.48,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 54
+        },
+        {
+          "startFrame": 54,
+          "endFrame": 247
+        },
+        {
+          "startFrame": 247,
+          "endFrame": 397
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "04",
+        "kicker": "03 / 真实素材混排",
+        "subtitle": "真实截图加精准框选，比干讲十句都管用",
+        "type": "media",
+        "title": "真实架构图 + **局部红框标注**",
+        "image": "demo-arch.png",
+        "caption": "示意图直接复用本地素材，并用高亮框锁定视觉焦点",
+        "highlightBox": {
+          "x": 30,
+          "y": 28,
+          "w": 40,
+          "h": 32
+        }
+      },
+      "index": 3,
+      "startFrame": 1011,
+      "durationInFrames": 240,
+      "readingSec": 8,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 81
+        },
+        {
+          "startFrame": 81,
+          "endFrame": 233
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "05",
+        "kicker": "04 / 全景复盘",
+        "subtitle": "先看懂全局骨架，再逐步沉淀标准样本",
+        "type": "grid",
+        "title": "一套视觉系统的 **6 个核心子体系**",
+        "columns": 3,
+        "cards": [
+          {
+            "tag": "01",
+            "title": "Art Direction",
+            "desc": "定义我们是谁、不是谁",
+            "featured": true
+          },
+          {
+            "tag": "02",
+            "title": "Composition",
+            "desc": "重心、留白与信息路径"
+          },
+          {
+            "tag": "03",
+            "title": "Elements",
+            "desc": "字体、色彩与卡片语言"
+          },
+          {
+            "tag": "04",
+            "title": "Media",
+            "desc": "真实截图与视觉隐喻"
+          },
+          {
+            "tag": "05",
+            "title": "Motion",
+            "desc": "克制入场、演完即定住"
+          },
+          {
+            "tag": "06",
+            "title": "Quality Gate",
+            "desc": "抽帧与审美终审闭环",
+            "featured": true
+          }
+        ]
+      },
+      "index": 4,
+      "startFrame": 1251,
+      "durationInFrames": 270,
+      "readingSec": 9,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 263
+        },
+        {
+          "startFrame": 24,
+          "endFrame": 263
+        },
+        {
+          "startFrame": 31,
+          "endFrame": 263
+        },
+        {
+          "startFrame": 38,
+          "endFrame": 263
+        },
+        {
+          "startFrame": 45,
+          "endFrame": 263
+        },
+        {
+          "startFrame": 52,
+          "endFrame": 263
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "06",
+        "kicker": "收尾",
+        "subtitle": "这套暖纸编辑风已经可以直接复用",
+        "type": "outro",
+        "conclusion": "先让画面**讲清关系**，再谈高级质感",
+        "subline": "Warm Editorial · 16:9 标杆皮肤"
+      },
+      "index": 5,
+      "startFrame": 1521,
+      "durationInFrames": 144,
+      "readingSec": 4.8,
+      "itemTimings": [
+        {
+          "startFrame": 6,
+          "endFrame": 61
+        },
+        {
+          "startFrame": 61,
+          "endFrame": 137
+        }
+      ]
+    }
+  ]
+}

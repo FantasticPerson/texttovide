@@ -1,0 +1,112 @@
+{
+  "title": "混合素材自动化工作流实测",
+  "theme": "warm-editorial",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "totalFrames": 780,
+  "totalSec": 26,
+  "scenes": [
+    {
+      "scene": {
+        "id": "01",
+        "kicker": "工作流实测",
+        "subtitle": "同一套视觉系统同时管住代码、生图和网页截图",
+        "type": "hook",
+        "headline": "一份 MD 进，**代码 + 生图 + 网页截图**混排出片",
+        "subline": "统一受风格包约束，告别纯组件单调感"
+      },
+      "index": 0,
+      "startFrame": 0,
+      "durationInFrames": 156,
+      "readingSec": 5.2,
+      "itemTimings": [
+        {
+          "startFrame": 6,
+          "endFrame": 35
+        },
+        {
+          "startFrame": 35,
+          "endFrame": 149
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "02",
+        "kicker": "01 / 风格包生图",
+        "subtitle": "生图自动锁定奶油纸底与炭黑朱砂红，融入画面不割裂",
+        "type": "media",
+        "title": "自动注入**暖纸风格前缀**生成的隐喻插画",
+        "image": "assets/workflow-test/metaphor-pipeline.png",
+        "variant": "illustration",
+        "caption": "由 image-gen 混元生图自动产出并落盘"
+      },
+      "index": 1,
+      "startFrame": 156,
+      "durationInFrames": 240,
+      "readingSec": 8,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 113
+        },
+        {
+          "startFrame": 113,
+          "endFrame": 233
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "03",
+        "kicker": "02 / 自动网页截图",
+        "subtitle": "真实页面自动截图加浏览器外框，省去所有手工操作",
+        "type": "media",
+        "title": "自动截取**真实官网**并装裱",
+        "image": "assets/workflow-test/remotion-home.png",
+        "variant": "browser",
+        "urlLabel": "https://www.remotion.dev",
+        "caption": "无需手动开浏览器，自动装入统一风格外框"
+      },
+      "index": 2,
+      "startFrame": 396,
+      "durationInFrames": 240,
+      "readingSec": 8,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 88
+        },
+        {
+          "startFrame": 88,
+          "endFrame": 233
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "04",
+        "kicker": "验证完成",
+        "subtitle": "接下来只需丢进你的 Markdown 文章",
+        "type": "outro",
+        "conclusion": "素材全自动，**风格不跑偏**",
+        "subline": "Visual System Workflow"
+      },
+      "index": 3,
+      "startFrame": 636,
+      "durationInFrames": 144,
+      "readingSec": 4.8,
+      "itemTimings": [
+        {
+          "startFrame": 6,
+          "endFrame": 59
+        },
+        {
+          "startFrame": 59,
+          "endFrame": 137
+        }
+      ]
+    }
+  ]
+}

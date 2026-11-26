@@ -1,0 +1,22 @@
+{
+  "style": "warm-editorial",
+  "assets": [
+    {
+      "id": "metaphor-brain",
+      "type": "ai-image",
+      "filename": "metaphor-pipeline.png",
+      "prompt": "a clean minimalist editorial diagram showing a paper document on the left transforming through three geometric blocks into a glowing video filmstrip on the right, centered composition with generous empty cream background",
+      "size": "1280x720",
+      "revise": false
+    },
+    {
+      "id": "remotion-home",
+      "type": "web-capture",
+      "filename": "remotion-home.png",
+      "url": "https://www.remotion.dev/",
+      "width": 1440,
+      "height": 900,
+      "waitMs": 3500
+    }
+  ]
+}

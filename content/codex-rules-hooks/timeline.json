@@ -1,0 +1,597 @@
+{
+  "title": "规则与钩子：给 Codex 装上卡点和扳机",
+  "theme": "dark-tech",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "chapters": [
+    "引言",
+    "闸门与扳机",
+    "Rules",
+    "Hooks",
+    "信任机制",
+    "管道对话",
+    "避坑",
+    "总结"
+  ],
+  "totalFrames": 5177,
+  "totalSec": 172.57,
+  "bgm": {
+    "file": "bgm/tech-groove.wav",
+    "volume": 0.26,
+    "fadeInSec": 1,
+    "fadeOutSec": 1.8
+  },
+  "scenes": [
+    {
+      "scene": {
+        "id": "01",
+        "chapter": "引言",
+        "narration": [
+          "AGENTS.md 里写了改完代码记得格式化，为什么模型三次里总忘一次？",
+          "因为写进说明书的只是请求，配成规则和钩子才是必然兑现的保证。"
+        ],
+        "type": "hook",
+        "headline": "AGENTS.md 是**请求**，规则钩子是**保证**",
+        "subline": "告别手敲格式化，给 Codex 装上闸门与扳机"
+      },
+      "index": 0,
+      "startFrame": 0,
+      "durationInFrames": 450,
+      "readingSec": 14.67,
+      "itemTimings": [
+        {
+          "startFrame": 14,
+          "endFrame": 210
+        },
+        {
+          "startFrame": 210,
+          "endFrame": 433
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "02",
+        "chapter": "闸门与扳机",
+        "narration": [
+          "先把这俩分工钉死：规则就像小区门禁卡，判断这条命令准不准出沙箱。",
+          "钩子就像楼道感应灯，只要走到固定时机就自动触发脚本，绝不靠自觉。"
+        ],
+        "type": "media",
+        "title": "规则管**准入闸门**，钩子管**自动扳机**",
+        "image": "assets/codex-rules-hooks/gate-and-trigger.png",
+        "variant": "illustration",
+        "caption": "门禁卡（Rules）判准入 ｜ 感应灯（Hooks）必触发"
+      },
+      "index": 1,
+      "startFrame": 450,
+      "durationInFrames": 502,
+      "readingSec": 16.73,
+      "itemTimings": [
+        {
+          "startFrame": 14,
+          "endFrame": 242
+        },
+        {
+          "startFrame": 242,
+          "endFrame": 495
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "03",
+        "chapter": "闸门与扳机",
+        "narration": [
+          "写进提示词只能拜托模型尽量遵守，漏跑一次格式化就会被 CI 打回。",
+          "换成规则和钩子后，高频命令自动放行，高危红线硬拦死，格式一次不漏。"
+        ],
+        "type": "compare",
+        "title": "为什么必须把**请求**升级成**保证**",
+        "before": {
+          "label": "写进 AGENTS.md",
+          "points": [
+            "本质是拜托模型自觉照办",
+            "每步靠它自己判断，容易遗漏",
+            "漏跑一次格式化就被 CI 打回"
+          ]
+        },
+        "after": {
+          "label": "规则与钩子",
+          "points": [
+            "条件一触发，脚本 100% 自动跑",
+            "高危前缀直接硬拦，不靠提示",
+            "跟模型记不记得没有任何关系"
+          ]
+        }
+      },
+      "index": 2,
+      "startFrame": 952,
+      "durationInFrames": 449,
+      "readingSec": 14.97,
+      "itemTimings": [
+        {
+          "startFrame": 14,
+          "endFrame": 215
+        },
+        {
+          "startFrame": 215,
+          "endFrame": 442
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "04",
+        "chapter": "Rules",
+        "narration": [
+          "规则用 prefix_rule 按命令前缀立规矩，放行、询问和禁止里最严的赢。",
+          "而且复合命令会被拆开逐条评估，改完先跑 execpolicy check 验证再重启。"
+        ],
+        "type": "mockup",
+        "title": "用 **prefix_rule** 给命令立规矩",
+        "windowTitle": "default.rules",
+        "lines": [
+          {
+            "role": "prompt",
+            "text": "codex execpolicy check -- gh pr view 7888"
+          },
+          {
+            "role": "output",
+            "text": "decision: allow / prompt / forbidden（最严的赢）"
+          },
+          {
+            "role": "muted",
+            "text": "复合命令 git add . && rm -rf / 会被拆开逐条评估"
+          },
+          {
+            "role": "highlight",
+            "text": "✓ 哪怕 allow 了 git add，rm -rf / 仍会被单独硬拦"
+          }
+        ],
+        "badges": [
+          "Starlark 语法",
+          "防夹带过关",
+          "先 check 再重启"
+        ]
+      },
+      "index": 3,
+      "startFrame": 1401,
+      "durationInFrames": 509,
+      "readingSec": 16.97,
+      "itemTimings": [
+        {
+          "startFrame": 14,
+          "endFrame": 130
+        },
+        {
+          "startFrame": 130,
+          "endFrame": 245
+        },
+        {
+          "startFrame": 245,
+          "endFrame": 360
+        },
+        {
+          "startFrame": 360,
+          "endFrame": 502
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "05",
+        "chapter": "Hooks",
+        "narration": [
+          "再看钩子，新手先把生命周期里最常用的四个事件吃透，就能覆盖九成场景。"
+        ],
+        "type": "chapter",
+        "number": "PART 02",
+        "title": "Hooks：在固定时机**自动开火**",
+        "subline": "吃透 4 个核心生命周期事件，覆盖 90% 场景"
+      },
+      "index": 4,
+      "startFrame": 1910,
+      "durationInFrames": 248,
+      "readingSec": 8.27,
+      "itemTimings": [
+        {
+          "startFrame": 14,
+          "endFrame": 114
+        },
+        {
+          "startFrame": 114,
+          "endFrame": 241
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "06",
+        "chapter": "Hooks",
+        "narration": [
+          "开场注入用 SessionStart，工具执行前拦截用 PreToolUse，事后自动格式化用 PostToolUse。",
+          "答完一轮想让它再自查一遍，就挂 Stop，再用正则 matcher 收窄触发范围。"
+        ],
+        "type": "flow",
+        "title": "新手必懂的 **4 个核心事件**",
+        "steps": [
+          {
+            "label": "SessionStart",
+            "detail": "开场注入项目状态或最近提交"
+          },
+          {
+            "label": "PreToolUse",
+            "detail": "工具执行前触发，唯一能拦操作"
+          },
+          {
+            "label": "PostToolUse",
+            "detail": "改完文件自动跑 ruff / prettier"
+          },
+          {
+            "label": "Stop",
+            "detail": "答完一轮触发，可让它再修一遍"
+          }
+        ]
+      },
+      "index": 5,
+      "startFrame": 2158,
+      "durationInFrames": 531,
+      "readingSec": 17.7,
+      "itemTimings": [
+        {
+          "startFrame": 14,
+          "endFrame": 135
+        },
+        {
+          "startFrame": 135,
+          "endFrame": 256
+        },
+        {
+          "startFrame": 256,
+          "endFrame": 377
+        },
+        {
+          "startFrame": 377,
+          "endFrame": 524
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "07",
+        "chapter": "信任机制",
+        "narration": [
+          "新手最容易懵的是：配完钩子死活不触发，其实是 Codex 默认不信任新钩子。",
+          "它按脚本哈希记录信任，必须敲 /hooks 过目签字，改一个字符都得重审。"
+        ],
+        "type": "media",
+        "title": "头号大坑：新钩子默认**不跑**",
+        "image": "assets/codex-rules-hooks/trust-shield.png",
+        "variant": "illustration",
+        "caption": "按钩子哈希记录信任 · 必须敲 /hooks 签字生效"
+      },
+      "index": 6,
+      "startFrame": 2689,
+      "durationInFrames": 475,
+      "readingSec": 15.83,
+      "itemTimings": [
+        {
+          "startFrame": 14,
+          "endFrame": 228
+        },
+        {
+          "startFrame": 228,
+          "endFrame": 468
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "08",
+        "chapter": "管道对话",
+        "narration": [
+          "钩子通过三条管道和 Codex 对话：stdin 收 JSON，exit 2 下指令，stdout 做精细控制。",
+          "注意 exit 2 在 Pre 阶段是硬拦，在 Post 和 Stop 阶段则是退回反馈让模型续一轮。"
+        ],
+        "type": "mockup",
+        "title": "钩子与 Codex 的**三条对话管道**",
+        "windowTitle": "block-dangerous.py",
+        "lines": [
+          {
+            "role": "prompt",
+            "text": "stdin  → 接收事件 JSON（含 tool_name 与 command）"
+          },
+          {
+            "role": "output",
+            "text": "exit 0 → 正常放行继续执行"
+          },
+          {
+            "role": "highlight",
+            "text": "exit 2 → Pre 拦截操作 ｜ Post 与 Stop 退回续轮"
+          },
+          {
+            "role": "muted",
+            "text": "stdout → 返回 permissionDecision: deny 做精细控制"
+          }
+        ],
+        "badges": [
+          "stdin 喂数据",
+          "exit 2 下指令",
+          "stdout 精控制"
+        ]
+      },
+      "index": 7,
+      "startFrame": 3164,
+      "durationInFrames": 570,
+      "readingSec": 19.0,
+      "itemTimings": [
+        {
+          "startFrame": 14,
+          "endFrame": 145
+        },
+        {
+          "startFrame": 145,
+          "endFrame": 276
+        },
+        {
+          "startFrame": 276,
+          "endFrame": 406
+        },
+        {
+          "startFrame": 406,
+          "endFrame": 563
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "09",
+        "chapter": "避坑",
+        "narration": [
+          "最实用的两个例子：一是改完文件自动格式化，零风险建议每个项目都配。",
+          "二是用 PreToolUse 拦高危命令；简单前缀禁令直接写规则更清爽，别两边重复配。"
+        ],
+        "type": "compare",
+        "title": "两个直接抄走的**实战钩子**",
+        "before": {
+          "label": "事后自动格式",
+          "points": [
+            "挂 PostToolUse 改文件后",
+            "改完自动跑 ruff / prettier",
+            "零风险，强烈建议全员配置"
+          ]
+        },
+        "after": {
+          "label": "事前拦危险",
+          "points": [
+            "PreToolUse 盯紧 Bash 命令",
+            "命中 rm -rf 立刻 exit 2 拦住",
+            "简单前缀禁令优先直接写 Rules"
+          ]
+        }
+      },
+      "index": 8,
+      "startFrame": 3734,
+      "durationInFrames": 525,
+      "readingSec": 17.5,
+      "itemTimings": [
+        {
+          "startFrame": 14,
+          "endFrame": 253
+        },
+        {
+          "startFrame": 253,
+          "endFrame": 518
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "10",
+        "chapter": "避坑",
+        "narration": [
+          "最后记住和 Claude Code 的六个反直觉差异：timeout 单位是秒，改文件工具叫 apply_patch。",
+          "还有哈希信任、同事件并发、block 续轮，以及用 git 根拼绝对路径，别照抄踩坑。"
+        ],
+        "type": "grid",
+        "title": "对比 Claude Code **6 大差异**",
+        "columns": 3,
+        "cards": [
+          {
+            "tag": "01",
+            "title": "timeout 是秒",
+            "desc": "不是毫秒，默认 600 秒"
+          },
+          {
+            "tag": "02",
+            "title": "apply_patch",
+            "desc": "改文件真实 tool_name"
+          },
+          {
+            "tag": "03",
+            "title": "/hooks 信任",
+            "desc": "非托管钩子签字才跑",
+            "featured": true
+          },
+          {
+            "tag": "04",
+            "title": "同事件并发",
+            "desc": "拦截钩子不阻挡同级钩子"
+          },
+          {
+            "tag": "05",
+            "title": "block 是续轮",
+            "desc": "Stop 里 block 让它再跑一轮",
+            "featured": true
+          },
+          {
+            "tag": "06",
+            "title": "git 根拼路径",
+            "desc": "别写相对路径防子目录失效"
+          }
+        ]
+      },
+      "index": 9,
+      "startFrame": 4259,
+      "durationInFrames": 642,
+      "readingSec": 21.4,
+      "itemTimings": [
+        {
+          "startFrame": 14,
+          "endFrame": 635
+        },
+        {
+          "startFrame": 21,
+          "endFrame": 635
+        },
+        {
+          "startFrame": 28,
+          "endFrame": 635
+        },
+        {
+          "startFrame": 35,
+          "endFrame": 635
+        },
+        {
+          "startFrame": 42,
+          "endFrame": 635
+        },
+        {
+          "startFrame": 49,
+          "endFrame": 635
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "11",
+        "chapter": "总结",
+        "narration": [
+          "规则守住安全红线，钩子接管重复劳动，现在就配一个自动格式化钩子试试吧。"
+        ],
+        "type": "outro",
+        "conclusion": "规则守住**红线**，钩子接管**重复劳动**",
+        "subline": "写配置 → /hooks 信任 → 自动触发"
+      },
+      "index": 10,
+      "startFrame": 4901,
+      "durationInFrames": 276,
+      "readingSec": 8.1,
+      "itemTimings": [
+        {
+          "startFrame": 14,
+          "endFrame": 112
+        },
+        {
+          "startFrame": 112,
+          "endFrame": 236
+        }
+      ]
+    }
+  ],
+  "narrationFile": "audio/codex-rules-hooks/narration.mp3",
+  "subtitles": [
+    {
+      "text": "AGENTS.md 里写了改完代码记得格式化，为什么模型三次里总忘一次？",
+      "startFrame": 10,
+      "endFrame": 241
+    },
+    {
+      "text": "因为写进说明书的只是请求，配成规则和钩子才是必然兑现的保证。",
+      "startFrame": 248,
+      "endFrame": 430
+    },
+    {
+      "text": "先把这俩分工钉死：规则就像小区门禁卡，判断这条命令准不准出沙箱。",
+      "startFrame": 450,
+      "endFrame": 700
+    },
+    {
+      "text": "钩子就像楼道感应灯，只要走到固定时机就自动触发脚本，绝不靠自觉。",
+      "startFrame": 706,
+      "endFrame": 932
+    },
+    {
+      "text": "写进提示词只能拜托模型尽量遵守，漏跑一次格式化就会被 CI 打回。",
+      "startFrame": 952,
+      "endFrame": 1163
+    },
+    {
+      "text": "换成规则和钩子后，高频命令自动放行，高危红线硬拦死，格式一次不漏。",
+      "startFrame": 1170,
+      "endFrame": 1381
+    },
+    {
+      "text": "规则用 prefix_rule 按命令前缀立规矩，放行、询问和禁止里最严的赢。",
+      "startFrame": 1401,
+      "endFrame": 1658
+    },
+    {
+      "text": "而且复合命令会被拆开逐条评估，改完先跑 execpolicy check 验证再重启。",
+      "startFrame": 1664,
+      "endFrame": 1890
+    },
+    {
+      "text": "再看钩子，新手先把生命周期里最常用的四个事件吃透，就能覆盖九成场景。",
+      "startFrame": 1910,
+      "endFrame": 2138
+    },
+    {
+      "text": "开场注入用 SessionStart，工具执行前拦截用 PreToolUse，事后自动格式化用 PostToolUse。",
+      "startFrame": 2158,
+      "endFrame": 2425
+    },
+    {
+      "text": "答完一轮想让它再自查一遍，就挂 Stop，再用正则 matcher 收窄触发范围。",
+      "startFrame": 2431,
+      "endFrame": 2669
+    },
+    {
+      "text": "新手最容易懵的是：配完钩子死活不触发，其实是 Codex 默认不信任新钩子。",
+      "startFrame": 2689,
+      "endFrame": 2907
+    },
+    {
+      "text": "它按脚本哈希记录信任，必须敲 /hooks 过目签字，改一个字符都得重审。",
+      "startFrame": 2914,
+      "endFrame": 3144
+    },
+    {
+      "text": "钩子通过三条管道和 Codex 对话：stdin 收 JSON，exit 2 下指令，stdout 做精细控制。",
+      "startFrame": 3164,
+      "endFrame": 3426
+    },
+    {
+      "text": "注意 exit 2 在 Pre 阶段是硬拦，在 Post 和 Stop 阶段则是退回反馈让模型续一轮。",
+      "startFrame": 3433,
+      "endFrame": 3713
+    },
+    {
+      "text": "最实用的两个例子：一是改完文件自动格式化，零风险建议每个项目都配。",
+      "startFrame": 3734,
+      "endFrame": 3926
+    },
+    {
+      "text": "二是用 PreToolUse 拦高危命令；简单前缀禁令直接写规则更清爽，别两边重复配。",
+      "startFrame": 3932,
+      "endFrame": 4239
+    },
+    {
+      "text": "最后记住和 Claude Code 的六个反直觉差异：timeout 单位是秒，改文件工具叫 apply_patch。",
+      "startFrame": 4259,
+      "endFrame": 4598
+    },
+    {
+      "text": "还有哈希信任、同事件并发、block 续轮，以及用 git 根拼绝对路径，别照抄踩坑。",
+      "startFrame": 4604,
+      "endFrame": 4880
+    },
+    {
+      "text": "规则守住安全红线，钩子接管重复劳动，现在就配一个自动格式化钩子试试吧。",
+      "startFrame": 4901,
+      "endFrame": 5124
+    }
+  ]
+}

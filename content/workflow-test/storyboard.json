@@ -1,0 +1,46 @@
+{
+  "title": "混合素材自动化工作流实测",
+  "theme": "warm-editorial",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "scenes": [
+    {
+      "id": "01",
+      "type": "hook",
+      "kicker": "工作流实测",
+      "headline": "一份 MD 进，**代码 + 生图 + 网页截图**混排出片",
+      "subline": "统一受风格包约束，告别纯组件单调感",
+      "subtitle": "同一套视觉系统同时管住代码、生图和网页截图"
+    },
+    {
+      "id": "02",
+      "type": "media",
+      "kicker": "01 / 风格包生图",
+      "title": "自动注入**暖纸风格前缀**生成的隐喻插画",
+      "image": "assets/workflow-test/metaphor-pipeline.png",
+      "variant": "illustration",
+      "caption": "由 image-gen 混元生图自动产出并落盘",
+      "subtitle": "生图自动锁定奶油纸底与炭黑朱砂红，融入画面不割裂"
+    },
+    {
+      "id": "03",
+      "type": "media",
+      "kicker": "02 / 自动网页截图",
+      "title": "自动截取**真实官网**并装裱",
+      "image": "assets/workflow-test/remotion-home.png",
+      "variant": "browser",
+      "urlLabel": "https://www.remotion.dev",
+      "caption": "无需手动开浏览器，自动装入统一风格外框",
+      "subtitle": "真实页面自动截图加浏览器外框，省去所有手工操作"
+    },
+    {
+      "id": "04",
+      "type": "outro",
+      "kicker": "验证完成",
+      "conclusion": "素材全自动，**风格不跑偏**",
+      "subline": "Visual System Workflow",
+      "subtitle": "接下来只需丢进你的 Markdown 文章"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+.venv-tts/
+.pnpm-store/
+
+# Reference materials (local only)
+references/
+
+# Rendered outputs & caches
+out/
+.remotion/
+*.mp4
+*.mov
+*.wav
+*.mp3
+
+# Environment & secrets
+.env
+.env.*
+
+# OS, editor & AI local config
+.DS_Store
+.vscode/
+.idea/
+.claude/
+*.log

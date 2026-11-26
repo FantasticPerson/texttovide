@@ -1,0 +1,207 @@
+{
+  "title": "AI 世界入门词典：小白必备概念清单",
+  "theme": "dark-tech",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "chapters": ["引言", "LLM", "Token", "Prompt", "RAG", "Agent", "MCP", "工具", "总结"],
+  "scenes": [
+    {
+      "id": "01",
+      "type": "hook",
+      "chapter": "引言",
+      "headline": "每个字都认识，连在一起却**完全看不懂**？",
+      "subline": "用最直白的类比，一次性打通 **AI 8 大核心概念**",
+      "subtitle": "不是 AI 太复杂，是没人用人话跟你讲清楚"
+    },
+    {
+      "id": "02",
+      "type": "grid",
+      "chapter": "引言",
+      "title": "AI 入门必懂的 **8 个关键词**",
+      "columns": 4,
+      "cards": [
+        { "tag": "01", "title": "LLM", "desc": "底层超级大脑" },
+        { "tag": "02", "title": "Token", "desc": "文字处理最小单位" },
+        { "tag": "03", "title": "Context", "desc": "单次记忆工作台" },
+        { "tag": "04", "title": "多模态", "desc": "看图听声的感官" },
+        { "tag": "05", "title": "Prompt", "desc": "给 AI 的任务说明", "featured": true },
+        { "tag": "06", "title": "RAG", "desc": "查资料再答题", "featured": true },
+        { "tag": "07", "title": "Agent", "desc": "能直接干活的智能体", "featured": true },
+        { "tag": "08", "title": "MCP", "desc": "连接工具的统一接口", "featured": true }
+      ],
+      "subtitle": "不用死记硬背，先建立一张全局概念地图"
+    },
+    {
+      "id": "03",
+      "type": "compare",
+      "chapter": "LLM",
+      "title": "大模型不是**更强的搜索引擎**",
+      "before": {
+        "label": "传统搜索引擎",
+        "points": [
+          "帮你找一堆网页链接",
+          "需要自己点开翻找答案",
+          "只能检索，不能帮你写"
+        ]
+      },
+      "after": {
+        "label": "大模型（超级学霸）",
+        "points": [
+          "读过互联网几万亿字内容",
+          "真正理解意图与语言逻辑",
+          "直接生成请假邮件与方案"
+        ]
+      },
+      "subtitle": "第一梯队是 Gemini、GPT 和 Opus"
+    },
+    {
+      "id": "04",
+      "type": "mockup",
+      "chapter": "Token",
+      "title": "Token 是 AI 时代的**「手机流量」**",
+      "windowTitle": "token-inspector",
+      "lines": [
+        { "role": "prompt", "text": "我今天吃了一碗拉面" },
+        { "role": "output", "text": "[我] [今天] [吃了] [一碗] [拉面]  → 约 8~10 Tokens" },
+        { "role": "muted", "text": "中文换算：1000 Tokens ≈ 1500 ~ 2000 汉字" },
+        { "role": "highlight", "text": "作用 1：API 按百万 Token 计费  |  作用 2：决定上下文记忆上限" }
+      ],
+      "badges": ["按量计费单位", "工作台=上下文窗口", "聊太长会失忆"],
+      "subtitle": "聊久失忆不是变笨了，是工作台装不下了"
+    },
+    {
+      "id": "05",
+      "type": "compare",
+      "chapter": "Prompt",
+      "title": "Prompt 的本质：**给员工布置任务**",
+      "before": {
+        "label": "模糊指令",
+        "points": [
+          "「帮我弄一下报告」",
+          "无对象、无字数、无重点",
+          "输出结果全靠碰运气"
+        ]
+      },
+      "after": {
+        "label": "清晰 Prompt",
+        "points": [
+          "面向高管的季度总结",
+          "300 字以内，语气正式",
+          "重点突出销售增长与份额"
+        ]
+      },
+      "subtitle": "同样的问题，差距就在 Prompt 够不够清楚"
+    },
+    {
+      "id": "06",
+      "type": "flow",
+      "chapter": "RAG",
+      "title": "RAG：给 AI 配一个**专属资料员**",
+      "steps": [
+        { "label": "01 提出问题", "detail": "比如查询合同第 8 条违约条款" },
+        { "label": "02 检索专属资料", "detail": "先翻你的合同、手册或知识库" },
+        { "label": "03 开卷答题", "detail": "基于真实原文作答，大幅减少胡编" }
+      ],
+      "subtitle": "普通模型靠记忆闭卷考，RAG 靠查资料开卷考"
+    },
+    {
+      "id": "07",
+      "type": "chapter",
+      "chapter": "Agent",
+      "number": "PART 02",
+      "title": "从**只会聊天**，到**有手有脚**",
+      "subline": "理解 Agent、Tool 与 MCP 的协同关系",
+      "subtitle": "对话框只是 AI 最早期的形态，未来属于智能体"
+    },
+    {
+      "id": "08",
+      "type": "compare",
+      "chapter": "Agent",
+      "title": "普通大模型 vs **Agent 智能体**",
+      "before": {
+        "label": "只会说话的大脑",
+        "points": [
+          "能回答问题、写文字方案",
+          "打不开网页，也存不了文件",
+          "干活还是得你自己动手"
+        ]
+      },
+      "after": {
+        "label": "大脑 + 手脚",
+        "points": [
+          "自己拆解步骤并调用工具",
+          "联网搜索、跑代码、改本地文件",
+          "直接把整理好的结果交给你"
+        ]
+      },
+      "subtitle": "像 Claude Code，能直接操作电脑干活"
+    },
+    {
+      "id": "09",
+      "type": "mockup",
+      "chapter": "Agent",
+      "title": "Agent 调用 **Tool** 干完一件事",
+      "windowTitle": "agent-runtime",
+      "lines": [
+        { "role": "prompt", "text": "找北京 3 年经验、月薪 3W+ 产品岗位，整理成表格发我" },
+        { "role": "output", "text": "→ 调用 [搜索工具] 检索最新招聘列表" },
+        { "role": "output", "text": "→ 调用 [筛选与代码工具] 清洗薪资并生成表格" },
+        { "role": "highlight", "text": "✓ 任务完成：已导出 jobs.xlsx 并发送至邮箱" }
+      ],
+      "badges": ["01 自动规划", "02 调用现成工具", "03 交付成品"],
+      "subtitle": "你不用手把手教步骤，只管提目标、验结果"
+    },
+    {
+      "id": "10",
+      "type": "quote",
+      "chapter": "MCP",
+      "highlight": "USB-C 接口",
+      "quote": "MCP 是 AI 世界的 **USB 接口**——一根线连起日历、邮件与各类本地应用。",
+      "caption": "Anthropic 提出的模型上下文标准协议",
+      "subtitle": "有了 MCP，AI 和外部工具彻底实现即插即用"
+    },
+    {
+      "id": "11",
+      "type": "grid",
+      "chapter": "工具",
+      "title": "小白入门必备的 **6 件工具**",
+      "columns": 3,
+      "cards": [
+        { "tag": "基础", "title": "魔法上网", "desc": "用稳定付费款，直达顶尖模型" },
+        { "tag": "格式", "title": "Markdown", "desc": "AI 时代通用文档格式，5 分钟上手" },
+        { "tag": "知识库", "title": "Obsidian", "desc": "本地笔记 + AI 第二大脑", "featured": true },
+        { "tag": "对话", "title": "Gemini", "desc": "Google 生态打通，超长上下文" },
+        { "tag": "研读", "title": "NotebookLM", "desc": "跨文档分析 + 自动生成播客", "featured": true },
+        { "tag": "国内入门", "title": "Workbuddy", "desc": "免魔法体验完整职场智能体" }
+      ],
+      "subtitle": "提前装好这套装备，后面实战效率翻倍"
+    },
+    {
+      "id": "12",
+      "type": "grid",
+      "chapter": "总结",
+      "title": "一张图记住 **8 个核心类比**",
+      "columns": 4,
+      "cards": [
+        { "tag": "LLM", "title": "超级学霸", "desc": "直接理解并生成答案" },
+        { "tag": "Token", "title": "AI 的流量", "desc": "决定账单与记忆上限" },
+        { "tag": "Context", "title": "工作台大小", "desc": "一次能铺多少资料" },
+        { "tag": "多模态", "title": "人的感官", "desc": "看图、听声、看视频" },
+        { "tag": "Prompt", "title": "任务说明书", "desc": "越明确输出越精准", "featured": true },
+        { "tag": "RAG", "title": "开卷考试", "desc": "查专属资料不胡编", "featured": true },
+        { "tag": "Agent", "title": "有手有脚", "desc": "规划步骤并执行交付", "featured": true },
+        { "tag": "MCP", "title": "USB 接口", "desc": "一根线连起万千工具", "featured": true }
+      ],
+      "subtitle": "先留个印象，遇到具体工具时再回来查"
+    },
+    {
+      "id": "13",
+      "type": "outro",
+      "chapter": "总结",
+      "conclusion": "先留个印象，**用起来自然就熟了**",
+      "subline": "AI 世界入门词典 · 从 0 到 1 最佳实践",
+      "subtitle": "下一篇，咱们继续循序渐进"
+    }
+  ]
+}

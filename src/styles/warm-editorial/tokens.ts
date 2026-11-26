@@ -1,0 +1,40 @@
+import { MONO_STACK, SANS_STACK, SERIF_STACK, ThemeTokens } from "../types";
+
+export const warmEditorialTokens: ThemeTokens = {
+  id: "warm-editorial",
+  name: "暖纸红黑编辑风",
+  isDark: false,
+  colors: {
+    bg: "#FBF1C7",
+    bgGradient:
+      "radial-gradient(ellipse at 50% 0%, rgba(255, 250, 232, 0.85) 0%, rgba(251, 241, 199, 0) 65%), linear-gradient(180deg, #FDF5D7 0%, #F7E5A8 100%)",
+    gridLine: "rgba(120, 86, 40, 0.04)",
+    orbPrimary: "rgba(255, 255, 255, 0.45)",
+    orbSecondary: "rgba(234, 179, 8, 0.12)",
+    surface: "rgba(255, 252, 240, 0.86)",
+    surfaceActive: "rgba(255, 254, 248, 0.98)",
+    border: "rgba(120, 86, 40, 0.18)",
+    borderActive: "rgba(200, 62, 43, 0.58)",
+    textPrimary: "#1F2933",
+    textSecondary: "#52606D",
+    textMuted: "#7B8794",
+    accent: "#C83E2B",
+    accentSoft: "rgba(200, 62, 43, 0.10)",
+    accentText: "#FFFFFF",
+    negative: "#C83E2B",
+    negativeBg: "rgba(200, 62, 43, 0.08)",
+    negativeBorder: "rgba(200, 62, 43, 0.34)",
+    positive: "#1B4D3E",
+    positiveBg: "rgba(27, 77, 62, 0.09)",
+    positiveBorder: "rgba(27, 77, 62, 0.36)",
+    windowBg: "#18221F",
+    windowHeaderBg: "rgba(255, 255, 255, 0.06)",
+    subtitleBg: "rgba(31, 41, 51, 0.55)",
+    subtitleText: "#FFFDF5",
+  },
+  fonts: {
+    heading: SERIF_STACK,
+    sans: SANS_STACK,
+    mono: MONO_STACK,
+  },
+};

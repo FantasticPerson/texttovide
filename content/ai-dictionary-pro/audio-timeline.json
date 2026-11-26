@@ -1,0 +1,649 @@
+{
+  "title": "AI 世界入门词典（高光交互版）",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "chapters": [
+    "引言",
+    "LLM",
+    "Token",
+    "Context",
+    "Prompt",
+    "RAG",
+    "MCP",
+    "总结"
+  ],
+  "narrationFile": "audio/ai-dictionary-pro/narration.mp3",
+  "bgmFile": "bgm/tech-groove.wav",
+  "totalFrames": 4744,
+  "totalSec": 158.13,
+  "scenes": [
+    {
+      "id": "01",
+      "type": "opening-grid",
+      "chapter": "引言",
+      "startFrame": 0,
+      "durationInFrames": 488,
+      "lines": [
+        {
+          "text": "这几年 AI 圈的热词越来越多。",
+          "startSec": 0.35,
+          "endSec": 2.639,
+          "startFrame": 10,
+          "endFrame": 79,
+          "localStartFrame": 10,
+          "localEndFrame": 79
+        },
+        {
+          "text": "大模型、Token、上下文、Prompt、RAG、Agent、MCP。",
+          "startSec": 2.879,
+          "endSec": 8.496,
+          "startFrame": 86,
+          "endFrame": 255,
+          "localStartFrame": 86,
+          "localEndFrame": 255
+        },
+        {
+          "text": "每个字都认识，连在一起却完全看不懂。",
+          "startSec": 8.736,
+          "endSec": 12.215,
+          "startFrame": 262,
+          "endFrame": 366,
+          "localStartFrame": 262,
+          "localEndFrame": 366
+        },
+        {
+          "text": "今天用一支视频，把它们彻底演明白。",
+          "startSec": 12.455,
+          "endSec": 15.609,
+          "startFrame": 374,
+          "endFrame": 468,
+          "localStartFrame": 374,
+          "localEndFrame": 468
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "type": "llm-predict",
+      "chapter": "LLM",
+      "startFrame": 488,
+      "durationInFrames": 535,
+      "lines": [
+        {
+          "text": "先说大模型，它就像读过互联网几万亿字的超级学霸。",
+          "startSec": 16.269,
+          "endSec": 20.745,
+          "startFrame": 488,
+          "endFrame": 622,
+          "localStartFrame": 0,
+          "localEndFrame": 134
+        },
+        {
+          "text": "但说句大实话，它其实并不是真的懂你。",
+          "startSec": 20.985,
+          "endSec": 24.164,
+          "startFrame": 630,
+          "endFrame": 725,
+          "localStartFrame": 142,
+          "localEndFrame": 237
+        },
+        {
+          "text": "它干的事只有一件：根据上文，预测下一个字。",
+          "startSec": 24.404,
+          "endSec": 28.16,
+          "startFrame": 732,
+          "endFrame": 845,
+          "localStartFrame": 244,
+          "localEndFrame": 357
+        },
+        {
+          "text": "就像中文输入法，你打今天天气真，它自动跳出候选词。",
+          "startSec": 28.4,
+          "endSec": 33.436,
+          "startFrame": 852,
+          "endFrame": 1003,
+          "localStartFrame": 364,
+          "localEndFrame": 515
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "type": "token-split",
+      "chapter": "Token",
+      "startFrame": 1023,
+      "durationInFrames": 531,
+      "lines": [
+        {
+          "text": "那大模型是按什么单位往下预测的？这就叫 Token。",
+          "startSec": 34.096,
+          "endSec": 37.958,
+          "startFrame": 1023,
+          "endFrame": 1139,
+          "localStartFrame": 0,
+          "localEndFrame": 116
+        },
+        {
+          "text": "你输入帮我制定一份 AI 学习计划，它会被拆成七块字砖。",
+          "startSec": 38.198,
+          "endSec": 42.99,
+          "startFrame": 1146,
+          "endFrame": 1290,
+          "localStartFrame": 123,
+          "localEndFrame": 267
+        },
+        {
+          "text": "中文里大概一到两个字，就是一个 Token。",
+          "startSec": 43.23,
+          "endSec": 46.298,
+          "startFrame": 1297,
+          "endFrame": 1389,
+          "localStartFrame": 274,
+          "localEndFrame": 366
+        },
+        {
+          "text": "Token 就是 AI 世界的手机流量，输入和输出都在按量计费。",
+          "startSec": 46.538,
+          "endSec": 51.133,
+          "startFrame": 1396,
+          "endFrame": 1534,
+          "localStartFrame": 373,
+          "localEndFrame": 511
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "type": "workbench",
+      "chapter": "Context",
+      "startFrame": 1554,
+      "durationInFrames": 588,
+      "lines": [
+        {
+          "text": "那 AI 一次能记住多少 Token？这叫上下文窗口。",
+          "startSec": 51.793,
+          "endSec": 55.621,
+          "startFrame": 1554,
+          "endFrame": 1669,
+          "localStartFrame": 0,
+          "localEndFrame": 115
+        },
+        {
+          "text": "你可以把它想成一张工作台，桌子越大，能铺开的资料越多。",
+          "startSec": 55.861,
+          "endSec": 60.99,
+          "startFrame": 1676,
+          "endFrame": 1830,
+          "localStartFrame": 122,
+          "localEndFrame": 276
+        },
+        {
+          "text": "可桌子一变小，最早放上去的资料就会被挤掉下去。",
+          "startSec": 61.23,
+          "endSec": 65.66,
+          "startFrame": 1837,
+          "endFrame": 1970,
+          "localStartFrame": 283,
+          "localEndFrame": 416
+        },
+        {
+          "text": "所以聊久了它开始失忆，不是变笨了，是工作台装不下了。",
+          "startSec": 65.9,
+          "endSec": 70.747,
+          "startFrame": 1977,
+          "endFrame": 2122,
+          "localStartFrame": 423,
+          "localEndFrame": 568
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "type": "prompt-terminal",
+      "chapter": "Prompt",
+      "startFrame": 2142,
+      "durationInFrames": 535,
+      "lines": [
+        {
+          "text": "怎么让 AI 听懂你？靠的就是 Prompt，提示词。",
+          "startSec": 71.407,
+          "endSec": 75.074,
+          "startFrame": 2142,
+          "endFrame": 2252,
+          "localStartFrame": 0,
+          "localEndFrame": 110
+        },
+        {
+          "text": "你只说帮我弄个报告，它只能给你一堆正确的废话。",
+          "startSec": 75.314,
+          "endSec": 79.282,
+          "startFrame": 2259,
+          "endFrame": 2378,
+          "localStartFrame": 117,
+          "localEndFrame": 236
+        },
+        {
+          "text": "但你讲清对象、字数、重点和语气，答案立刻具体十倍。",
+          "startSec": 79.522,
+          "endSec": 84.361,
+          "startFrame": 2386,
+          "endFrame": 2531,
+          "localStartFrame": 244,
+          "localEndFrame": 389
+        },
+        {
+          "text": "Prompt 的本质，就是把任务要求给员工交代清楚。",
+          "startSec": 84.601,
+          "endSec": 88.558,
+          "startFrame": 2538,
+          "endFrame": 2657,
+          "localStartFrame": 396,
+          "localEndFrame": 515
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "type": "rag-flow",
+      "chapter": "RAG",
+      "startFrame": 2677,
+      "durationInFrames": 562,
+      "lines": [
+        {
+          "text": "可大模型没见过你电脑里的合同和笔记，怎么不让它胡编？",
+          "startSec": 89.218,
+          "endSec": 93.776,
+          "startFrame": 2677,
+          "endFrame": 2813,
+          "localStartFrame": 0,
+          "localEndFrame": 136
+        },
+        {
+          "text": "这就需要 RAG，给 AI 配一个专属资料员。",
+          "startSec": 94.016,
+          "endSec": 97.187,
+          "startFrame": 2820,
+          "endFrame": 2916,
+          "localStartFrame": 143,
+          "localEndFrame": 239
+        },
+        {
+          "text": "你提问时，先从你的文件库里精准检索原文，再交给模型作答。",
+          "startSec": 97.427,
+          "endSec": 102.998,
+          "startFrame": 2923,
+          "endFrame": 3090,
+          "localStartFrame": 246,
+          "localEndFrame": 413
+        },
+        {
+          "text": "普通模型靠记忆闭卷考，RAG 靠查资料开卷考。",
+          "startSec": 103.238,
+          "endSec": 107.296,
+          "startFrame": 3097,
+          "endFrame": 3219,
+          "localStartFrame": 420,
+          "localEndFrame": 542
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "type": "mcp-hub",
+      "chapter": "MCP",
+      "startFrame": 3239,
+      "durationInFrames": 685,
+      "lines": [
+        {
+          "text": "当 AI 从只会聊天，升级成有手有脚的 Agent 智能体。",
+          "startSec": 107.956,
+          "endSec": 112.366,
+          "startFrame": 3239,
+          "endFrame": 3371,
+          "localStartFrame": 0,
+          "localEndFrame": 132
+        },
+        {
+          "text": "工具一多就麻烦了，每个软件接口各不相同，适配成本极高。",
+          "startSec": 112.606,
+          "endSec": 117.787,
+          "startFrame": 3378,
+          "endFrame": 3534,
+          "localStartFrame": 139,
+          "localEndFrame": 295
+        },
+        {
+          "text": "于是有了 MCP，就像把所有充电口统一成 USB Type-C。",
+          "startSec": 118.027,
+          "endSec": 124.953,
+          "startFrame": 3541,
+          "endFrame": 3749,
+          "localStartFrame": 302,
+          "localEndFrame": 510
+        },
+        {
+          "text": "一根标准协议，让 AI 即插即用连接日历、文件和本地应用。",
+          "startSec": 125.193,
+          "endSec": 130.145,
+          "startFrame": 3756,
+          "endFrame": 3904,
+          "localStartFrame": 517,
+          "localEndFrame": 665
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "type": "spotlight-summary",
+      "chapter": "总结",
+      "startFrame": 3924,
+      "durationInFrames": 634,
+      "lines": [
+        {
+          "text": "最后十秒，一口气记住八个核心类比。",
+          "startSec": 130.805,
+          "endSec": 133.93,
+          "startFrame": 3924,
+          "endFrame": 4018,
+          "localStartFrame": 0,
+          "localEndFrame": 94
+        },
+        {
+          "text": "大模型是超级学霸，Token 是 AI 流量。",
+          "startSec": 134.17,
+          "endSec": 137.256,
+          "startFrame": 4025,
+          "endFrame": 4118,
+          "localStartFrame": 101,
+          "localEndFrame": 194
+        },
+        {
+          "text": "上下文是工作台大小，Prompt 是任务说明书。",
+          "startSec": 137.496,
+          "endSec": 141.251,
+          "startFrame": 4125,
+          "endFrame": 4238,
+          "localStartFrame": 201,
+          "localEndFrame": 314
+        },
+        {
+          "text": "RAG 是开卷考试，Agent 是有手有脚的智能体。",
+          "startSec": 141.491,
+          "endSec": 145.143,
+          "startFrame": 4245,
+          "endFrame": 4354,
+          "localStartFrame": 321,
+          "localEndFrame": 430
+        },
+        {
+          "text": "MCP 是 AI 世界的 USB 接口，用起来自然就熟了。",
+          "startSec": 145.383,
+          "endSec": 151.263,
+          "startFrame": 4361,
+          "endFrame": 4538,
+          "localStartFrame": 437,
+          "localEndFrame": 614
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "type": "outro-cta",
+      "chapter": "总结",
+      "startFrame": 4558,
+      "durationInFrames": 186,
+      "lines": [
+        {
+          "text": "如果这支视频帮你理清了思路，记得点个赞收藏起来。",
+          "startSec": 151.923,
+          "endSec": 156.286,
+          "startFrame": 4558,
+          "endFrame": 4689,
+          "localStartFrame": 0,
+          "localEndFrame": 131
+        }
+      ]
+    }
+  ],
+  "subtitles": [
+    {
+      "text": "这几年 AI 圈的热词越来越多。",
+      "startSec": 0.35,
+      "endSec": 2.639,
+      "startFrame": 10,
+      "endFrame": 79
+    },
+    {
+      "text": "大模型、Token、上下文、Prompt、RAG、Agent、MCP。",
+      "startSec": 2.879,
+      "endSec": 8.496,
+      "startFrame": 86,
+      "endFrame": 255
+    },
+    {
+      "text": "每个字都认识，连在一起却完全看不懂。",
+      "startSec": 8.736,
+      "endSec": 12.215,
+      "startFrame": 262,
+      "endFrame": 366
+    },
+    {
+      "text": "今天用一支视频，把它们彻底演明白。",
+      "startSec": 12.455,
+      "endSec": 15.609,
+      "startFrame": 374,
+      "endFrame": 468
+    },
+    {
+      "text": "先说大模型，它就像读过互联网几万亿字的超级学霸。",
+      "startSec": 16.269,
+      "endSec": 20.745,
+      "startFrame": 488,
+      "endFrame": 622
+    },
+    {
+      "text": "但说句大实话，它其实并不是真的懂你。",
+      "startSec": 20.985,
+      "endSec": 24.164,
+      "startFrame": 630,
+      "endFrame": 725
+    },
+    {
+      "text": "它干的事只有一件：根据上文，预测下一个字。",
+      "startSec": 24.404,
+      "endSec": 28.16,
+      "startFrame": 732,
+      "endFrame": 845
+    },
+    {
+      "text": "就像中文输入法，你打今天天气真，它自动跳出候选词。",
+      "startSec": 28.4,
+      "endSec": 33.436,
+      "startFrame": 852,
+      "endFrame": 1003
+    },
+    {
+      "text": "那大模型是按什么单位往下预测的？这就叫 Token。",
+      "startSec": 34.096,
+      "endSec": 37.958,
+      "startFrame": 1023,
+      "endFrame": 1139
+    },
+    {
+      "text": "你输入帮我制定一份 AI 学习计划，它会被拆成七块字砖。",
+      "startSec": 38.198,
+      "endSec": 42.99,
+      "startFrame": 1146,
+      "endFrame": 1290
+    },
+    {
+      "text": "中文里大概一到两个字，就是一个 Token。",
+      "startSec": 43.23,
+      "endSec": 46.298,
+      "startFrame": 1297,
+      "endFrame": 1389
+    },
+    {
+      "text": "Token 就是 AI 世界的手机流量，输入和输出都在按量计费。",
+      "startSec": 46.538,
+      "endSec": 51.133,
+      "startFrame": 1396,
+      "endFrame": 1534
+    },
+    {
+      "text": "那 AI 一次能记住多少 Token？这叫上下文窗口。",
+      "startSec": 51.793,
+      "endSec": 55.621,
+      "startFrame": 1554,
+      "endFrame": 1669
+    },
+    {
+      "text": "你可以把它想成一张工作台，桌子越大，能铺开的资料越多。",
+      "startSec": 55.861,
+      "endSec": 60.99,
+      "startFrame": 1676,
+      "endFrame": 1830
+    },
+    {
+      "text": "可桌子一变小，最早放上去的资料就会被挤掉下去。",
+      "startSec": 61.23,
+      "endSec": 65.66,
+      "startFrame": 1837,
+      "endFrame": 1970
+    },
+    {
+      "text": "所以聊久了它开始失忆，不是变笨了，是工作台装不下了。",
+      "startSec": 65.9,
+      "endSec": 70.747,
+      "startFrame": 1977,
+      "endFrame": 2122
+    },
+    {
+      "text": "怎么让 AI 听懂你？靠的就是 Prompt，提示词。",
+      "startSec": 71.407,
+      "endSec": 75.074,
+      "startFrame": 2142,
+      "endFrame": 2252
+    },
+    {
+      "text": "你只说帮我弄个报告，它只能给你一堆正确的废话。",
+      "startSec": 75.314,
+      "endSec": 79.282,
+      "startFrame": 2259,
+      "endFrame": 2378
+    },
+    {
+      "text": "但你讲清对象、字数、重点和语气，答案立刻具体十倍。",
+      "startSec": 79.522,
+      "endSec": 84.361,
+      "startFrame": 2386,
+      "endFrame": 2531
+    },
+    {
+      "text": "Prompt 的本质，就是把任务要求给员工交代清楚。",
+      "startSec": 84.601,
+      "endSec": 88.558,
+      "startFrame": 2538,
+      "endFrame": 2657
+    },
+    {
+      "text": "可大模型没见过你电脑里的合同和笔记，怎么不让它胡编？",
+      "startSec": 89.218,
+      "endSec": 93.776,
+      "startFrame": 2677,
+      "endFrame": 2813
+    },
+    {
+      "text": "这就需要 RAG，给 AI 配一个专属资料员。",
+      "startSec": 94.016,
+      "endSec": 97.187,
+      "startFrame": 2820,
+      "endFrame": 2916
+    },
+    {
+      "text": "你提问时，先从你的文件库里精准检索原文，再交给模型作答。",
+      "startSec": 97.427,
+      "endSec": 102.998,
+      "startFrame": 2923,
+      "endFrame": 3090
+    },
+    {
+      "text": "普通模型靠记忆闭卷考，RAG 靠查资料开卷考。",
+      "startSec": 103.238,
+      "endSec": 107.296,
+      "startFrame": 3097,
+      "endFrame": 3219
+    },
+    {
+      "text": "当 AI 从只会聊天，升级成有手有脚的 Agent 智能体。",
+      "startSec": 107.956,
+      "endSec": 112.366,
+      "startFrame": 3239,
+      "endFrame": 3371
+    },
+    {
+      "text": "工具一多就麻烦了，每个软件接口各不相同，适配成本极高。",
+      "startSec": 112.606,
+      "endSec": 117.787,
+      "startFrame": 3378,
+      "endFrame": 3534
+    },
+    {
+      "text": "于是有了 MCP，就像把所有充电口统一成 USB Type-C。",
+      "startSec": 118.027,
+      "endSec": 124.953,
+      "startFrame": 3541,
+      "endFrame": 3749
+    },
+    {
+      "text": "一根标准协议，让 AI 即插即用连接日历、文件和本地应用。",
+      "startSec": 125.193,
+      "endSec": 130.145,
+      "startFrame": 3756,
+      "endFrame": 3904
+    },
+    {
+      "text": "最后十秒，一口气记住八个核心类比。",
+      "startSec": 130.805,
+      "endSec": 133.93,
+      "startFrame": 3924,
+      "endFrame": 4018
+    },
+    {
+      "text": "大模型是超级学霸，Token 是 AI 流量。",
+      "startSec": 134.17,
+      "endSec": 137.256,
+      "startFrame": 4025,
+      "endFrame": 4118
+    },
+    {
+      "text": "上下文是工作台大小，Prompt 是任务说明书。",
+      "startSec": 137.496,
+      "endSec": 141.251,
+      "startFrame": 4125,
+      "endFrame": 4238
+    },
+    {
+      "text": "RAG 是开卷考试，Agent 是有手有脚的智能体。",
+      "startSec": 141.491,
+      "endSec": 145.143,
+      "startFrame": 4245,
+      "endFrame": 4354
+    },
+    {
+      "text": "MCP 是 AI 世界的 USB 接口，用起来自然就熟了。",
+      "startSec": 145.383,
+      "endSec": 151.263,
+      "startFrame": 4361,
+      "endFrame": 4538
+    },
+    {
+      "text": "如果这支视频帮你理清了思路，记得点个赞收藏起来。",
+      "startSec": 151.923,
+      "endSec": 156.286,
+      "startFrame": 4558,
+      "endFrame": 4689
+    }
+  ]
+}
