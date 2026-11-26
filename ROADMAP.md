@@ -61,3 +61,4 @@
 - **2026-11-26（目录重构与规范同步）**：
   - 将 `toturial/`、`new/`、`videos/`、根目录 `24-hooks.md` 统一收口到 `references/`（并加入 `.gitignore`），将 `image-gen/` 移至 `tools/image-gen/`，清理空目录 `refet/`。
   - 更新 `scripts/fetch-assets.ts` 引用路径、`.gitignore` 与 `AGENTS.md`，验证 `tsc --noEmit`、`verify-styles.ts`、`fetch-assets.ts` 与 `tools/image-gen/src/cloudbase.js` 模块加载全部通过。
+  - 完成首次基线提交 `5bf5bb2`（`main`，97 个文件），并补齐 `README.md` 日常出片与命令速查手册。
