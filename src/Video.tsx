@@ -53,12 +53,83 @@ const renderSceneBody = (item: TimelineScene, theme: ThemeTokens) => {
   }
 };
 
+const renderSceneSfx = (
+  item: TimelineScene,
+  idx: number,
+  fps: number,
+  sfxScale: number,
+) => {
+  const cues: Array<{ key: string; from: number; dur: number; file: string; volume: number }> = [];
+
+  // 切屏微风声（首屏除外）
+  if (idx > 0) {
+    cues.push({
+      key: "whoosh",
+      from: 0,
+      dur: Math.ceil(0.32 * fps),
+      file: "sfx/whoosh.wav",
+      volume: Math.min(1, 0.45 * sfxScale),
+    });
+  }
+
+  // 结构化元素出现音效（按 itemTimings 精准对齐，自动去重防过密）
+  const type = item.scene.type;
+  let itemFile: string | null = null;
+  let itemVol = 0;
+  let maxItems = 0;
+
+  if (type === "bullets" || type === "compare" || type === "flow" || type === "grid") {
+    itemFile = "sfx/pop.wav";
+    itemVol = Math.min(1, 0.28 * sfxScale);
+    maxItems = 6;
+  } else if (type === "mockup") {
+    itemFile = "sfx/click.wav";
+    itemVol = Math.min(1, 0.22 * sfxScale);
+    maxItems = 5;
+  } else if (type === "media") {
+    itemFile = "sfx/click.wav";
+    itemVol = Math.min(1, 0.24 * sfxScale);
+    maxItems = 1;
+  }
+
+  if (itemFile && maxItems > 0) {
+    let lastFrame = -999;
+    let count = 0;
+    for (const timing of item.itemTimings) {
+      if (count >= maxItems) break;
+      const f = Math.max(0, timing.startFrame);
+      if (f - lastFrame < 5 || f >= item.durationInFrames - 4) continue;
+      cues.push({
+        key: `item-${count}`,
+        from: f,
+        dur: Math.ceil(0.15 * fps),
+        file: itemFile,
+        volume: itemVol,
+      });
+      lastFrame = f;
+      count += 1;
+    }
+  }
+
+  return cues.map((cue) => (
+    <Sequence
+      key={cue.key}
+      from={cue.from}
+      durationInFrames={Math.min(cue.dur, Math.max(1, item.durationInFrames - cue.from))}
+    >
+      <Audio src={staticFile(cue.file)} volume={cue.volume} />
+    </Sequence>
+  ));
+};
+
 export const Video: React.FC<VideoProps> = ({ timeline }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const totalScenes = timeline.scenes.length;
   const chapters = timeline.chapters ?? [];
   const hasChapters = chapters.length > 0;
+  const sfxEnabled = timeline.sfx?.enabled !== false;
+  const sfxScale = timeline.sfx?.volume ?? 1;
 
   const currentItem =
     timeline.scenes.find(
@@ -137,6 +208,7 @@ export const Video: React.FC<VideoProps> = ({ timeline }) => {
             >
               {renderSceneBody(item, sceneTheme)}
             </SceneShell>
+            {sfxEnabled && renderSceneSfx(item, idx, fps, sfxScale)}
           </Sequence>
         );
       })}

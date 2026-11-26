@@ -185,7 +185,7 @@ function buildItemTimings(
 
 export function buildTimeline(input: unknown): TimelineData {
   const storyboard: Storyboard = StoryboardSchema.parse(input);
-  const { fps, width, height, title, bgm, theme, chapters } = storyboard;
+  const { fps, width, height, title, bgm, sfx, theme, chapters } = storyboard;
 
   let cursorFrame = 0;
   const scenes: TimelineScene[] = storyboard.scenes.map((scene, index) => {
@@ -215,6 +215,7 @@ export function buildTimeline(input: unknown): TimelineData {
     totalFrames: cursorFrame,
     totalSec: Number((cursorFrame / fps).toFixed(2)),
     bgm,
+    sfx,
     scenes,
   };
 }

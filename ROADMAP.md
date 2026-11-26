@@ -62,3 +62,6 @@
   - 将 `toturial/`、`new/`、`videos/`、根目录 `24-hooks.md` 统一收口到 `references/`（并加入 `.gitignore`），将 `image-gen/` 移至 `tools/image-gen/`，清理空目录 `refet/`。
   - 更新 `scripts/fetch-assets.ts` 引用路径、`.gitignore` 与 `AGENTS.md`，验证 `tsc --noEmit`、`verify-styles.ts`、`fetch-assets.ts` 与 `tools/image-gen/src/cloudbase.js` 模块加载全部通过。
   - 完成首次基线提交 `5bf5bb2`（`main`，97 个文件），并补齐 `README.md` 日常出片与命令速查手册。
+- **2026-11-26（主模板微音效接入验收）**：
+  - 在 `src/schema/storyboard.ts`、`src/timeline/build.ts` 与 `src/Video.tsx` 接入可配置微音效层（`sfx: { enabled, volume }`，默认开启）：切屏自动触发 `whoosh.wav`，`bullets/compare/flow/grid` 按 `itemTimings` 触发 `pop.wav`，`mockup/media` 触发 `click.wav`。
+  - `tsc --noEmit` 0 错误，重新导出 `out/codex-rules-hooks.mp4`（5177 帧，18.8 MB），实测转场音效与全片无削波。

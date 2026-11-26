@@ -164,6 +164,12 @@ export const StoryboardSchema = z.object({
       fadeOutSec: z.number().min(0).max(5).default(1.8),
     })
     .optional(),
+  sfx: z
+    .object({
+      enabled: z.boolean().default(true),
+      volume: z.number().min(0).max(2).default(1),
+    })
+    .optional(),
   scenes: z.array(SceneSchema).min(2, "至少 2 个场景").max(16, "最多 16 个场景"),
 });
 
@@ -210,6 +216,7 @@ export interface TimelineData {
   totalFrames: number;
   totalSec: number;
   bgm?: Storyboard["bgm"];
+  sfx?: Storyboard["sfx"];
   narrationFile?: string;
   subtitles?: SubtitleCue[];
   scenes: TimelineScene[];
