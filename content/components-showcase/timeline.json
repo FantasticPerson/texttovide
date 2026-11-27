@@ -12,8 +12,8 @@
     "判定聚焦",
     "总结"
   ],
-  "totalFrames": 1728,
-  "totalSec": 57.6,
+  "totalFrames": 2052,
+  "totalSec": 68.4,
   "bgm": {
     "file": "bgm/tech-groove.wav",
     "volume": 0.24,
@@ -238,7 +238,7 @@
       "scene": {
         "id": "05",
         "chapter": "数据指标",
-        "durationSec": 5.8,
+        "durationSec": 5.4,
         "type": "metrics",
         "title": "评测对比：**柱状图**一眼锁定主角",
         "mode": "bars",
@@ -273,24 +273,133 @@
       },
       "index": 4,
       "startFrame": 675,
-      "durationInFrames": 174,
-      "readingSec": 5.8,
+      "durationInFrames": 162,
+      "readingSec": 5.4,
       "itemTimings": [
         {
           "startFrame": 17,
-          "endFrame": 44
+          "endFrame": 42
         },
         {
-          "startFrame": 44,
-          "endFrame": 82
+          "startFrame": 42,
+          "endFrame": 77
         },
         {
-          "startFrame": 82,
-          "endFrame": 112
+          "startFrame": 77,
+          "endFrame": 104
         },
         {
-          "startFrame": 112,
-          "endFrame": 167
+          "startFrame": 104,
+          "endFrame": 155
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "05b",
+        "chapter": "数据指标",
+        "invert": true,
+        "durationSec": 5.6,
+        "transition": "wipe",
+        "type": "metrics",
+        "title": "单支视频耗时：**折线趋势图**直降 85%",
+        "mode": "line",
+        "items": [
+          {
+            "label": "纯手剪",
+            "value": 180,
+            "max": 200,
+            "suffix": "m"
+          },
+          {
+            "label": "剪映模板",
+            "value": 95,
+            "max": 200,
+            "suffix": "m"
+          },
+          {
+            "label": "脚本半自动",
+            "value": 45,
+            "max": 200,
+            "suffix": "m"
+          },
+          {
+            "label": "本引擎 V4",
+            "value": 15,
+            "max": 200,
+            "suffix": "m",
+            "featured": true
+          }
+        ]
+      },
+      "index": 5,
+      "startFrame": 837,
+      "durationInFrames": 168,
+      "readingSec": 5.6,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 45
+        },
+        {
+          "startFrame": 45,
+          "endFrame": 73
+        },
+        {
+          "startFrame": 73,
+          "endFrame": 107
+        },
+        {
+          "startFrame": 107,
+          "endFrame": 161
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "05c",
+        "chapter": "数据指标",
+        "durationSec": 5.6,
+        "transition": "slide-left",
+        "type": "metrics",
+        "title": "出片精力分配：**环形占比图**一目了然",
+        "mode": "donut",
+        "centerLabel": "内容打磨",
+        "items": [
+          {
+            "label": "写好原文章与口播",
+            "value": 70,
+            "note": "核心护城河",
+            "featured": true
+          },
+          {
+            "label": "分镜与配图微调",
+            "value": 20,
+            "note": "AI 辅助拆镜"
+          },
+          {
+            "label": "渲染与音画合成",
+            "value": 10,
+            "note": "全自动 CLI 执行"
+          }
+        ]
+      },
+      "index": 6,
+      "startFrame": 1005,
+      "durationInFrames": 168,
+      "readingSec": 5.6,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 57
+        },
+        {
+          "startFrame": 57,
+          "endFrame": 93
+        },
+        {
+          "startFrame": 93,
+          "endFrame": 161
         }
       ]
     },
@@ -326,8 +435,8 @@
           }
         ]
       },
-      "index": 5,
-      "startFrame": 849,
+      "index": 7,
+      "startFrame": 1173,
       "durationInFrames": 186,
       "readingSec": 6.2,
       "itemTimings": [
@@ -368,8 +477,8 @@
           }
         ]
       },
-      "index": 6,
-      "startFrame": 1035,
+      "index": 8,
+      "startFrame": 1359,
       "durationInFrames": 162,
       "readingSec": 5.4,
       "itemTimings": [
@@ -409,8 +518,8 @@
           }
         ]
       },
-      "index": 7,
-      "startFrame": 1197,
+      "index": 9,
+      "startFrame": 1521,
       "durationInFrames": 186,
       "readingSec": 6.2,
       "itemTimings": [
@@ -472,8 +581,8 @@
           }
         ]
       },
-      "index": 8,
-      "startFrame": 1383,
+      "index": 10,
+      "startFrame": 1707,
       "durationInFrames": 225,
       "readingSec": 7.5,
       "itemTimings": [
@@ -512,8 +621,8 @@
         "conclusion": "写完一篇 Markdown，直接出**高定级视频**",
         "subline": "13 类语义化场景组件 · 双皮肤随时切换"
       },
-      "index": 9,
-      "startFrame": 1608,
+      "index": 11,
+      "startFrame": 1932,
       "durationInFrames": 120,
       "readingSec": 4,
       "itemTimings": [

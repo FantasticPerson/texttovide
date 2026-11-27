@@ -101,7 +101,38 @@
         { "label": "传统 PPT 录屏", "value": 54, "max": 100, "suffix": "分" },
         { "label": "纯文字滚动", "value": 36, "max": 100, "suffix": "分", "dimmed": true }
       ],
-      "durationSec": 5.8
+      "durationSec": 5.4
+    },
+    {
+      "id": "05b",
+      "type": "metrics",
+      "chapter": "数据指标",
+      "invert": true,
+      "transition": "wipe",
+      "title": "单支视频耗时：**折线趋势图**直降 85%",
+      "mode": "line",
+      "items": [
+        { "label": "纯手剪", "value": 180, "max": 200, "suffix": "m" },
+        { "label": "剪映模板", "value": 95, "max": 200, "suffix": "m" },
+        { "label": "脚本半自动", "value": 45, "max": 200, "suffix": "m" },
+        { "label": "本引擎 V4", "value": 15, "max": 200, "suffix": "m", "featured": true }
+      ],
+      "durationSec": 5.6
+    },
+    {
+      "id": "05c",
+      "type": "metrics",
+      "chapter": "数据指标",
+      "transition": "slide-left",
+      "title": "出片精力分配：**环形占比图**一目了然",
+      "mode": "donut",
+      "centerLabel": "内容打磨",
+      "items": [
+        { "label": "写好原文章与口播", "value": 70, "note": "核心护城河", "featured": true },
+        { "label": "分镜与配图微调", "value": 20, "note": "AI 辅助拆镜" },
+        { "label": "渲染与音画合成", "value": 10, "note": "全自动 CLI 执行" }
+      ],
+      "durationSec": 5.6
     },
     {
       "id": "06",

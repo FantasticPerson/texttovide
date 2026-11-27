@@ -166,7 +166,9 @@ export const MetricsSceneSchema = z.object({
   ...baseSceneFields,
   type: z.literal("metrics"),
   title: nonEmpty(26, "指标标题"),
-  mode: z.enum(["cards", "gauges", "bars"]).default("cards"),
+  mode: z.enum(["cards", "gauges", "bars", "line", "donut"]).default("cards"),
+  /** donut 模式中心说明文字（可选） */
+  centerLabel: nonEmpty(14, "环心标签").optional(),
   items: z
     .array(
       z.object({

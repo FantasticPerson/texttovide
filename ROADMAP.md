@@ -71,3 +71,6 @@
 - **2026-11-27（通用转场层 + 镜头呼吸动效 + 终端打字机接入）**：
   - 在 `baseSceneFields` 与 `SceneShell.tsx` 接入全场景通用的 `transition`（`fade / slide-up / slide-left / wipe / zoom`）与 `camera`（`none / zoom-in / zoom-out / pan-left / pan-right`），并在 `MockupScene.tsx` 为命令行 `prompt` 接入 `TypewriterText` 打字机光标动效。
   - `tsc --noEmit` 0 错误，重新导出 `out/components-showcase.mp4` 实测全部转场与镜头推进效果；随后修复 Chromium 慢速缩放文字时的亚像素跳格问题（将持续呼吸感迁至 `Background.tsx` 的 GPU `translate3d/scale` 光斑，前景纯文字屏默认 `camera: "none"` 且转场完成后释放 `transform`）。
+- **2026-11-27（数据图表补全：`MetricsScene` 新增 `line` 折线面积图与 `donut` 环形占比图）**：
+  - 吸收 `reactvideoeditor/remotion-templates` 的纯 Remotion SVG 图表绘制思路并适配双皮肤 `ThemeTokens`，为 `MetricsScene` 新增 `mode: "line"`（折线绘制 + 渐变面积揭开 + 节点弹入）与 `mode: "donut"`（顺时针环形占比 + 环心大数字 + 右侧图例明细）。
+  - 抽帧目检 `05b-metrics-f946.png` 与 `05c-metrics-f1114.png` 排版无溢出、双皮肤对比清晰，导出 `out/components-showcase.mp4`（`1920×1080 @ 30fps`，`68.42s`，2052 帧，9.7 MB）。
