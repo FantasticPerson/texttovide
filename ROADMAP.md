@@ -74,3 +74,5 @@
 - **2026-11-27（数据图表补全：`MetricsScene` 新增 `line` 折线面积图与 `donut` 环形占比图）**：
   - 吸收 `reactvideoeditor/remotion-templates` 的纯 Remotion SVG 图表绘制思路并适配双皮肤 `ThemeTokens`，为 `MetricsScene` 新增 `mode: "line"`（折线绘制 + 渐变面积揭开 + 节点弹入）与 `mode: "donut"`（顺时针环形占比 + 环心大数字 + 右侧图例明细）。
   - 抽帧目检 `05b-metrics-f946.png` 与 `05c-metrics-f1114.png` 排版无溢出、双皮肤对比清晰，导出 `out/components-showcase.mp4`（`1920×1080 @ 30fps`，`68.42s`，2052 帧，9.7 MB）。
+- **2026-11-27（出片 SOP 沉淀）**：
+  - 新增 `WORKFLOW.md`（固化 5 步出片验收流程、13 类组件选型矩阵、动效/音频/防抖避坑铁律与局部重跑技巧），并在 `AGENTS.md` 挂载必读入口，确保任意新会话开箱即按统一标准出片。

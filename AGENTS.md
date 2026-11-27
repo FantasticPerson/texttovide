@@ -11,7 +11,9 @@
 ```text
 texttovideo-new/
 ├── AGENTS.md                 # 项目级规范与设计约束（本文件）
+├── WORKFLOW.md               # Markdown 转知识视频出片 SOP（接到转视频任务时必读）
 ├── ROADMAP.md                # 项目真实进度源
+├── README.md                 # 日常使用与命令速查手册
 ├── src/
 │   ├── schema/               # Zod Schema（storyboard / timeline / assets）
 │   ├── styles/               # 视觉系统风格包（dark-tech / warm-editorial，每套含 tokens / style-guide / image-prompt / reference）
@@ -49,6 +51,7 @@ texttovideo-new/
 
 ## 开发与验证流程
 
+0. **接到「把某篇 Markdown / 文章转成视频」任务时，先读 [WORKFLOW.md](WORKFLOW.md)**，严格按其中的 13 类组件选型矩阵、动效/音频铁律与 5 步验收清单执行。
 1. 修改 `content/<slug>/storyboard.json` 后，先运行 `pnpm build:timeline <slug>`（或 `./node_modules/.bin/tsx scripts/build-timeline.ts <slug>`）做 Schema 校验并生成 `timeline.json`。
 2. 先运行 `render-frames.ts <slug>` 抽关键帧目检，确认无溢出、无重叠、视觉层次达标后再导出完整 MP4。
 3. 每次完成阶段功能或修复后，必须同步更新 `ROADMAP.md`。
