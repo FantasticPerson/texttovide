@@ -1,10 +1,12 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Easing,
   interpolate,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { CameraMotion, TransitionType } from "../schema/storyboard";
 import { ThemeTokens, getSafeArea, motion } from "../theme";
 import { Background } from "./Background";
 
@@ -19,6 +21,8 @@ interface SceneShellProps {
   isFirst?: boolean;
   isLast?: boolean;
   hideTopMeta?: boolean;
+  transition?: TransitionType;
+  camera?: CameraMotion;
   children: React.ReactNode;
 }
 
@@ -33,6 +37,8 @@ export const SceneShell: React.FC<SceneShellProps> = ({
   isFirst = false,
   isLast = false,
   hideTopMeta = false,
+  transition = "fade",
+  camera = "none",
   children,
 }) => {
   const frame = useCurrentFrame();
@@ -40,43 +46,73 @@ export const SceneShell: React.FC<SceneShellProps> = ({
   const safeArea = getSafeArea(width, height, hasChapters);
   const isVertical = height > width;
 
-  const enterFrames = Math.max(1, Math.round(motion.enterSec * fps));
+  const enterFrames = Math.max(
+    1,
+    Math.round((transition === "wipe" || transition === "slide-left" ? 0.36 : motion.enterSec) * fps),
+  );
   const exitFrames = Math.max(
     1,
     Math.round((isLast ? 0.5 : motion.exitSec) * fps),
   );
-
-  const enterOpacity = interpolate(frame, [0, enterFrames], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const enterY = interpolate(frame, [0, enterFrames], [isFirst ? 14 : 20, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
   const exitStart = Math.max(enterFrames, durationInFrames - exitFrames);
-  const exitOpacity = interpolate(
-    frame,
-    [exitStart, durationInFrames],
-    [1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
-  const exitY = interpolate(
-    frame,
-    [exitStart, durationInFrames],
-    [0, isLast ? 0 : -12],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
 
-  const contentOpacity = enterOpacity * exitOpacity;
-  const translateY = enterY + exitY;
+  const enterP = interpolate(frame, [0, enterFrames], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.cubic),
+  });
+  const exitP = interpolate(frame, [exitStart, durationInFrames], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: Easing.in(Easing.cubic),
+  });
+
+  const contentOpacity =
+    transition === "wipe"
+      ? (1 - exitP)
+      : enterP * (1 - exitP);
+
+  // 通用转场几何变换
+  let tx = 0;
+  let ty = 0;
+  let tScale = 1;
+  let clipPath: string | undefined;
+
+  if (transition === "fade") {
+    ty = (1 - enterP) * (isFirst ? 14 : 20) + exitP * (isLast ? 0 : -12);
+  } else if (transition === "slide-up") {
+    ty = (1 - enterP) * 64 + exitP * (isLast ? 0 : -36);
+  } else if (transition === "slide-left") {
+    tx = (1 - enterP) * 96 + exitP * (isLast ? 0 : -64);
+  } else if (transition === "zoom") {
+    tScale = (0.91 + 0.09 * enterP) * (1 + (isLast ? 0 : 0.045 * exitP));
+  } else if (transition === "wipe") {
+    const rightInset = (1 - enterP) * 100;
+    clipPath = rightInset > 0.1 ? `inset(0 ${rightInset}% 0 0)` : undefined;
+  }
+
+  // 持续镜头呼吸运动（仅作用于主舞台，保持顶栏与字幕绝对稳定）
+  const camP = interpolate(frame, [0, Math.max(1, durationInFrames)], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  let camScale = 1;
+  let camX = 0;
+  if (camera === "zoom-in") {
+    camScale = 1 + 0.042 * camP;
+  } else if (camera === "zoom-out") {
+    camScale = 1.042 - 0.042 * camP;
+  } else if (camera === "pan-left") {
+    camScale = 1.02;
+    camX = 18 - 36 * camP;
+  } else if (camera === "pan-right") {
+    camScale = 1.02;
+    camX = -18 + 36 * camP;
+  }
+
+  const shellTransform = `translate3d(${tx}px, ${ty}px, 0) scale(${tScale})`;
+  const stageTransform =
+    camera === "none" ? undefined : `translate3d(${camX}px, 0, 0) scale(${camScale})`;
 
   return (
     <AbsoluteFill>
@@ -93,7 +129,8 @@ export const SceneShell: React.FC<SceneShellProps> = ({
           display: "flex",
           flexDirection: "column",
           opacity: contentOpacity,
-          transform: `translateY(${translateY}px)`,
+          transform: shellTransform,
+          clipPath,
         }}
       >
         {/* 顶部轻量角标 + 编号 */}
@@ -158,6 +195,8 @@ export const SceneShell: React.FC<SceneShellProps> = ({
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            transform: stageTransform,
+            transformOrigin: "center center",
           }}
         >
           {children}

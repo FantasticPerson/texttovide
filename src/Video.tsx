@@ -221,6 +221,8 @@ export const Video: React.FC<VideoProps> = ({ timeline }) => {
               isFirst={idx === 0}
               isLast={idx === totalScenes - 1}
               hideTopMeta={item.scene.type === "chapter"}
+              transition={item.scene.transition}
+              camera={item.scene.camera}
             >
               {renderSceneBody(item, sceneTheme)}
             </SceneShell>

@@ -68,3 +68,6 @@
 - **2026-11-27（V4 组件库与动效全面升级验收：`out/components-showcase.mp4`）**：
   - 新增 `AnimatedConnector`（SVG 贝塞尔画线 + 流动光点）、`HighlightText` `==荧光词==` 扫过动效、3 类新场景组件（`DiagramScene` 多路汇聚/中心辐射、`MetricsScene` KPI 卡/环形仪表盘/评测柱状图、`VerdictScene` 红叉绿勾强判定/玻璃胶囊聚光灯），并升级 `MediaScene`（多框 SVG 描边 + 手机壳 `phone` + 长图滚动）与 `GridScene`（`focusMode` 聚光灯模式）。
   - 制作 10 屏双皮肤反转演示片 `content/components-showcase/storyboard.json` 并完成全屏抽帧目检与修复，导出 `out/components-showcase.mp4`（`h264 1920×1080 @ 30fps` + `aac 48kHz stereo`，`57.60s`，1728 帧，7.5 MB，音频峰值 `-14.7 dB` 无削波）。
+- **2026-11-27（通用转场层 + 镜头呼吸动效 + 终端打字机接入）**：
+  - 在 `baseSceneFields` 与 `SceneShell.tsx` 接入全场景通用的 `transition`（`fade / slide-up / slide-left / wipe / zoom`）与 `camera`（`none / zoom-in / zoom-out / pan-left / pan-right`），并在 `MockupScene.tsx` 为命令行 `prompt` 接入 `TypewriterText` 打字机光标动效。
+  - `tsc --noEmit` 0 错误，重新导出 `out/components-showcase.mp4` 实测全部转场与镜头推进效果。

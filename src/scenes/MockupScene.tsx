@@ -3,6 +3,7 @@ import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { MockupScene as MockupSceneType, ItemTiming } from "../schema/storyboard";
 import { ThemeTokens, motion } from "../theme";
 import { HighlightText } from "../components/HighlightText";
+import { TypewriterText } from "../motion/TypewriterText";
 
 interface Props {
   scene: MockupSceneType;
@@ -144,7 +145,16 @@ export const MockupScene: React.FC<Props> = ({ scene, itemTimings, theme }) => {
                 {isPrompt && (
                   <span style={{ color: "#34D399", flexShrink: 0 }}>&gt;</span>
                 )}
-                <span>{line.text}</span>
+                {isPrompt ? (
+                  <TypewriterText
+                    text={line.text}
+                    startFrame={timing.startFrame}
+                    charsPerFrame={1.15}
+                    cursorColor="#34D399"
+                  />
+                ) : (
+                  <span>{line.text}</span>
+                )}
               </div>
             );
           })}

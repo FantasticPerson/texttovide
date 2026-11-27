@@ -7,6 +7,11 @@ const nonEmpty = (max: number, label: string) =>
     .min(1, `${label}不能为空`)
     .max(max, `${label}超过 ${max} 字上限，请精简以防溢出`);
 
+export const TransitionSchema = z.enum(["fade", "slide-up", "slide-left", "wipe", "zoom"]);
+export const CameraMotionSchema = z.enum(["none", "zoom-in", "zoom-out", "pan-left", "pan-right"]);
+export type TransitionType = z.infer<typeof TransitionSchema>;
+export type CameraMotion = z.infer<typeof CameraMotionSchema>;
+
 const baseSceneFields = {
   id: z.string().min(1),
   kicker: nonEmpty(16, "角标").optional(),
@@ -15,6 +20,8 @@ const baseSceneFields = {
   narration: z.array(z.string().trim().min(1)).optional(),
   invert: z.boolean().optional(),
   durationSec: z.number().min(2).max(25).optional(),
+  transition: TransitionSchema.optional(),
+  camera: CameraMotionSchema.optional(),
 };
 
 export const HookSceneSchema = z.object({
