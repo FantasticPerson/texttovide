@@ -236,6 +236,8 @@ export const StoryboardSchema = z.object({
   width: z.number().int().default(1920),
   height: z.number().int().default(1080),
   chapters: z.array(nonEmpty(12, "章节名")).max(10).optional(),
+  /** 是否在顶部显示章节进度条（默认关闭，按需开启） */
+  showChapterBar: z.boolean().default(false),
   bgm: z
     .object({
       file: z.string().min(1),
@@ -296,6 +298,7 @@ export interface TimelineData {
   width: number;
   height: number;
   chapters?: string[];
+  showChapterBar?: boolean;
   totalFrames: number;
   totalSec: number;
   bgm?: Storyboard["bgm"];

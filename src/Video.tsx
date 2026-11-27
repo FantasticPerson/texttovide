@@ -143,7 +143,7 @@ export const Video: React.FC<VideoProps> = ({ timeline }) => {
   const { fps } = useVideoConfig();
   const totalScenes = timeline.scenes.length;
   const chapters = timeline.chapters ?? [];
-  const hasChapters = chapters.length > 0;
+  const hasChapters = Boolean(timeline.showChapterBar) && chapters.length > 0;
   const sfxEnabled = timeline.sfx?.enabled !== false;
   const sfxScale = timeline.sfx?.volume ?? 1;
 

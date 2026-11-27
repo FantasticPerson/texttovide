@@ -35,6 +35,7 @@ texttovideo-new/
   - `theme`：`"dark-tech"`（深空墨绿科技风）或 `"warm-editorial"`（暖纸红黑编辑风，支持单屏 `"invert": true` 暗色反转）。
   - `narration`：每个场景下的中文口播数组；若省略则输出无旁白配乐版。
   - `bgm`：配乐路径与音量（推荐有旁白时 `volume: 0.24–0.28`）。
+  - `showChapterBar`：是否在顶部显示章节进度条（默认 `false` 不显示，需要时设为 `true`）。
 - `assets-manifest.json`（可选）：需要 AI 生成的配图或自动截取的网页清单（可参考 [content/codex-rules-hooks/assets-manifest.json](content/codex-rules-hooks/assets-manifest.json)）。
 
 ### 2. 一键运行全链路

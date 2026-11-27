@@ -13,7 +13,7 @@
 - **先确认风格**：若主人未明确指定风格，先列出当前可用风格包并给出推荐项，由主人手动选择后再开始拆镜与生图；若主人已指定风格，直接按指定风格执行（也支持 CLI `--theme <style>` 手动覆盖）：
   - `dark-tech`（深空墨绿科技风）：适合硬核技术、工具与架构拆解。
   - `warm-editorial`（暖纸红黑编辑风）：适合方法论、观点、趋势与个人成长，每隔 2–3 屏可对重点屏设 `"invert": true` 做深墨绿暗屏视觉反转。
-- 规划 `4–8` 个简短章节名写入顶层 `chapters`，全片控制在 `8–14` 个场景。
+- 规划 `4–8` 个简短章节名写入顶层 `chapters`（顶部进度章节条默认隐藏，仅当明确需要时设 `"showChapterBar": true`），全片控制在 `8–14` 个场景。
 
 ### Step 3：编写 `storyboard.json`（+ 可选 `assets-manifest.json`）
 按「二、组件选型矩阵」把文章语义拆成结构化分镜；如需混元风格化配图或真实网页截图，在同目录建 `assets-manifest.json`（参考 [content/codex-rules-hooks/assets-manifest.json](content/codex-rules-hooks/assets-manifest.json)）。
