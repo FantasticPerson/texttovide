@@ -80,3 +80,7 @@
   - 新增 `scripts/parse-theme.ts`，为 `run-pipeline.ts`、`fetch-assets.ts`、`build-timeline.ts`、`render-video.ts` 全链路接入 `--theme <dark-tech|warm-editorial>` 手动覆写与 `--list-themes` 查询（`render-video.ts --theme` 自动输出 `out/<slug>-<theme>.mp4` 不覆盖原片），并同步更新 `WORKFLOW.md` 与 `README.md`。
   - 将风格 ID 列表收口到 `src/styles/types.ts`（`STYLE_IDS` 单点真源，`storyboard.ts` / `assets.ts` / CLI 自动联动），并在 `AGENTS.md` 挂载 `src/styles/STYLE_EXTRACTION.md` 扩肤协议入口。
   - 将顶部章节进度条改为可选配置 `showChapterBar`（默认 `false` 不显示，需显示时在分镜中显式开启）。
+- **2026-11-27（真实长文全流程出片验收：`25-worktrees.md` → `out/codex-worktrees.mp4`）**：
+  - 按 `WORKFLOW.md` 执行手动选风格（`warm-editorial` + 暗屏反转、`showChapterBar: false`），全自动跑通 2 张混元暖纸风配图（`medical-chart-copies.png` / `kitchen-handoff.png`）、本地 `Qwen3-TTS` 克隆 21 句本人旁白（`191.50s`）、单行同步字幕、微音效与 BGM 混音。
+  - 抽帧目检 7 屏（顺手收紧 `03-diagram` 圆心标签避免折行），`ffprobe` / `volumedetect` 校验通过：`h264 1920×1080 @ 30fps` + `aac 48kHz stereo`，`191.51s`（5745 帧，22.4 MB，峰值 `-4.0 dB` 无削波）。
+  - 修复 `src/styles/index.ts` 中 `resolveTheme(..., true)` 直接串切另一套风格包的 bug（改为同族明暗反转，保留原风格字体与强调色），同步更新 `WORKFLOW.md` 默认全片风格统一原则，并移除 `codex-worktrees` 全部 `invert: true` 重新导出纯暖纸红黑编辑风成片。

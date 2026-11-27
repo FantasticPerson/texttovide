@@ -1,0 +1,21 @@
+{
+  "style": "warm-editorial",
+  "assets": [
+    {
+      "id": "medical-chart-copies",
+      "type": "ai-image",
+      "filename": "medical-chart-copies.png",
+      "prompt": "Minimalist flat editorial vector illustration of one central archival folder branching cleanly into three neat cream paper document copies on a warm desk, linked by delicate vermilion red curved lines, symbolizing isolated parallel workspaces sharing one source of truth, clean geometric forms, generous negative space",
+      "size": "1280x720",
+      "revise": false
+    },
+    {
+      "id": "kitchen-handoff",
+      "type": "ai-image",
+      "filename": "kitchen-handoff.png",
+      "prompt": "Minimalist flat editorial architectural diagram of a warm modern open kitchen pass-through window separating a bright front counter and a tidy back prep station, with two sleek vermilion red bi-directional arrows sliding a glowing ceramic tray smoothly back and forth between front and back, clean editorial magazine style, generous breathing room",
+      "size": "1280x720",
+      "revise": false
+    }
+  ]
+}

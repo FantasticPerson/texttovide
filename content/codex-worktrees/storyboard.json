@@ -1,0 +1,232 @@
+{
+  "title": "Worktrees 并行隔离：让几个 Codex 各干各的",
+  "theme": "warm-editorial",
+  "showChapterBar": false,
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "chapters": ["痛点", "底层隔离", "建工作树", "铁规避坑", "Handoff", "环境与清理"],
+  "bgm": {
+    "file": "bgm/tech-groove.wav",
+    "volume": 0.26,
+    "fadeInSec": 0.9,
+    "fadeOutSec": 1.8
+  },
+  "sfx": {
+    "enabled": true,
+    "volume": 1
+  },
+  "scenes": [
+    {
+      "id": "01",
+      "type": "hook",
+      "chapter": "痛点",
+      "transition": "zoom",
+      "headline": "双开 Codex 改同仓库，==代码被盖一半==？",
+      "subline": "不是模型抽风，是没用 **Worktree** 并行隔离",
+      "narration": [
+        "在 Codex 桌面 App 里连开两个本地线程改同一个仓库，结果后提交的把前一个改动盖掉了一半。",
+        "这不是模型抽风，而是你让两个人在同一张桌上抢同一支笔。"
+      ]
+    },
+    {
+      "id": "02",
+      "type": "verdict",
+      "chapter": "痛点",
+      "transition": "wipe",
+      "title": "双开 Local 翻车的==真正原因==",
+      "mode": "judge",
+      "items": [
+        {
+          "label": "Codex 突然变笨写乱代码",
+          "detail": "同目录并发写同一个文件，谁都会打架",
+          "status": "fail"
+        },
+        {
+          "label": "共用同一工作区互相覆盖",
+          "detail": "并行改代码的前提是隔离副本、不抢同一份文件",
+          "status": "pass"
+        }
+      ],
+      "narration": [
+        "同仓库多任务并行，只要都跑在 Local 模式里，就会在同一个 config 文件上撞车。",
+        "真正稳妥的做法，是给每个并发任务发一份独立隔离的代码副本。"
+      ]
+    },
+    {
+      "id": "03",
+      "type": "diagram",
+      "chapter": "底层隔离",
+      "transition": "slide-left",
+      "title": "底层：共享 **.git**，文件全隔离",
+      "layout": "hub",
+      "center": {
+        "label": ".git",
+        "sub": "共享提交历史",
+        "tone": "accent"
+      },
+      "inputs": [
+        { "label": "Local 主目录", "sub": "前台日常开发" },
+        { "label": "副本一 · 改样式", "sub": "独立文件互不干扰" },
+        { "label": "副本二 · 修 Bug", "sub": "改砸了直接扔掉" },
+        { "label": "副本三 · 补测试", "sub": "后台并行推进" }
+      ],
+      "narration": [
+        "Worktree 的底层非常干净：所有副本共享同一份 .git 提交历史和分支元数据。",
+        "但每个线程拿到的是完全独立的工作目录，这边怎么折腾，都不会碰到那边的原件。"
+      ]
+    },
+    {
+      "id": "04",
+      "type": "media",
+      "chapter": "底层隔离",
+      "transition": "fade",
+      "title": "像医院会诊，每人发一份**病历副本**",
+      "image": "assets/codex-worktrees/medical-chart-copies.png",
+      "variant": "illustration",
+      "caption": "各写各的副本，最后再汇总进原件，绝不互相涂改",
+      "narration": [
+        "就像医院多科室会诊，不能让三位医生挤在一本原件病历上同时下笔。",
+        "每人发一份副本各写各的，手头改一半想试新点子，也能放心开个副本随便试。"
+      ]
+    },
+    {
+      "id": "05",
+      "type": "flow",
+      "chapter": "建工作树",
+      "transition": "slide-up",
+      "title": "桌面 App 四步建出 **Worktree**",
+      "steps": [
+        { "label": "切模式", "detail": "新线程从 Local 切到 Worktree" },
+        { "label": "选起点", "detail": "挑起始分支，可带未提交改动" },
+        { "label": "发指令", "detail": "自动建副本并在游离 HEAD 开工" },
+        { "label": "定去留", "detail": "点 Create branch 转正或交接" }
+      ],
+      "narration": [
+        "在 Codex 桌面 App 里建 Worktree 不用敲命令，只需选模式、挑起始分支、发指令就能开工。",
+        "注意它默认处在游离 HEAD 状态不污染分支列表，想提交推送时点一下 Create branch here 即可转正。"
+      ]
+    },
+    {
+      "id": "06",
+      "type": "mockup",
+      "chapter": "铁规避坑",
+      "transition": "wipe",
+      "title": "最容易踩的铁规：**同分支不能两处检出**",
+      "windowTitle": "git-worktree-guard",
+      "lines": [
+        { "role": "prompt", "text": "git checkout feature/a" },
+        { "role": "highlight", "text": "fatal: 'feature/a' is already used by worktree" },
+        { "role": "muted", "text": "同一本书同一时刻只能借给一个人，别硬怼分支" }
+      ],
+      "badges": ["分支唯一归属", "别硬切分支", "正解用 Handoff"],
+      "narration": [
+        "新手最容易踩的一条硬规矩是：同一个分支同一时刻只能在一个工作树里被检出。",
+        "如果在副本建了分支又去本地硬切，Git 会直接报错拦截，正解不是硬怼，而是用 Handoff 交接。"
+      ]
+    },
+    {
+      "id": "07",
+      "type": "media",
+      "chapter": "Handoff",
+      "transition": "zoom",
+      "title": "**Handoff** 就像明档与备餐间双向端菜",
+      "image": "assets/codex-worktrees/kitchen-handoff.png",
+      "variant": "illustration",
+      "caption": "Local 是前台明档 ｜ Worktree 是后台备餐间",
+      "narration": [
+        "你可以把 Local 当作厨房明档，把 Worktree 当作后台备餐间。",
+        "Handoff 就是把一道菜在前后台之间安全端进端出，底层 Git 操作全由 Codex 替你自动搞定。"
+      ]
+    },
+    {
+      "id": "08",
+      "type": "compare",
+      "chapter": "Handoff",
+      "transition": "slide-left",
+      "title": "Handoff 双向与 **忽略文件**",
+      "before": {
+        "label": "副本 → 本地前台",
+        "points": [
+          "把后台搭好的活端到前台",
+          "用熟悉的 IDE 逐行验收",
+          "跑单实例本地开发服务器"
+        ]
+      },
+      "after": {
+        "label": "本地 → 副本后台",
+        "points": [
+          "把耗时任务甩回后台慢跑",
+          "立刻腾出前台去忙别的事",
+          "注意 .env 等忽略文件不跟着搬"
+        ]
+      },
+      "narration": [
+        "后台搭完功能想进熟悉编辑器验收，就端回 Local；想腾出前台忙别的，就甩进 Worktree。",
+        "每个线程始终绑定原副本，但切记 .gitignore 里的 .env 和缓存不会跟着搬过去。"
+      ]
+    },
+    {
+      "id": "09",
+      "type": "mockup",
+      "chapter": "环境与清理",
+      "transition": "slide-up",
+      "title": "缺依赖？配 **setup 开店清单**",
+      "windowTitle": ".codex/setup.sh",
+      "lines": [
+        { "role": "prompt", "text": "npm install && npm run build" },
+        { "role": "output", "text": "每次新建 Worktree 时自动执行，装齐依赖再开工" },
+        { "role": "muted", "text": "配置保存在项目根 .codex 目录，可提交 Git 全队共享" }
+      ],
+      "badges": ["自动装依赖", "告别缺包报错", "全队共享配置"],
+      "narration": [
+        "因为新副本是干净检出，一开始既没有 node_modules 也没有 .env，直接跑很容易卡住。",
+        "在桌面 App 配好 local environment 的 setup 脚本，就像连锁店开店清单，新副本一建好自动装齐依赖。"
+      ]
+    },
+    {
+      "id": "10",
+      "type": "metrics",
+      "chapter": "环境与清理",
+      "transition": "wipe",
+      "title": "副本攒多了占磁盘？记住这 **3 个护栏**",
+      "mode": "cards",
+      "items": [
+        {
+          "label": "默认托管上限",
+          "value": 15,
+          "suffix": "个",
+          "note": "存于 .codex/worktrees，超限自清",
+          "featured": true
+        },
+        {
+          "label": "删前快照兜底",
+          "value": 100,
+          "suffix": "%",
+          "note": "自动删除前先存快照，重开对话可恢复"
+        },
+        {
+          "label": "误删重要副本",
+          "value": 0,
+          "suffix": "次",
+          "note": "置顶、进行中与永久 Worktree 绝不自动删"
+        }
+      ],
+      "narration": [
+        "至于磁盘占用也不用慌，Codex 默认只保留最近 15 个托管副本，归档线程也会自动回收。",
+        "删除前还会先留一份快照支持恢复，置顶对话和手动建的永久副本则永远不会被自动清掉。"
+      ]
+    },
+    {
+      "id": "11",
+      "type": "outro",
+      "chapter": "环境与清理",
+      "transition": "fade",
+      "conclusion": "同库并行，一律用 **Worktree**",
+      "subline": "各写各的副本，告别代码互相覆盖",
+      "narration": [
+        "记住这套组合拳：同仓库并行一律开 Worktree，前后台切换用 Handoff，从此彻底告别代码互相覆盖。"
+      ]
+    }
+  ]
+}
