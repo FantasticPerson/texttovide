@@ -51,7 +51,9 @@ texttovideo-new/
 
 ## 开发与验证流程
 
-0. **接到「把某篇 Markdown / 文章转成视频」任务时，先读 [WORKFLOW.md](WORKFLOW.md)**，严格按其中的 13 类组件选型矩阵、动效/音频铁律与 5 步验收清单执行。
+0. **按任务类型先读对应 SOP**：
+   - 接到「把某篇 Markdown / 文章转成视频」任务时，先读 [WORKFLOW.md](WORKFLOW.md)，严格按其中的 13 类组件选型矩阵、动效/音频铁律与 5 步验收清单执行。
+   - 接到「从参考截图新增一套视觉风格」任务时，先读 [src/styles/STYLE_EXTRACTION.md](src/styles/STYLE_EXTRACTION.md)，按 4 步提取 Visual DNA、落地 4 件套并单点注册到 `src/styles/`。
 1. 修改 `content/<slug>/storyboard.json` 后，先运行 `pnpm build:timeline <slug>`（或 `./node_modules/.bin/tsx scripts/build-timeline.ts <slug>`）做 Schema 校验并生成 `timeline.json`。
 2. 先运行 `render-frames.ts <slug>` 抽关键帧目检，确认无溢出、无重叠、视觉层次达标后再导出完整 MP4。
 3. 每次完成阶段功能或修复后，必须同步更新 `ROADMAP.md`。

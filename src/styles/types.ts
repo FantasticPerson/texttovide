@@ -1,4 +1,5 @@
-export type ThemeId = "dark-tech" | "warm-editorial";
+export const STYLE_IDS = ["dark-tech", "warm-editorial"] as const;
+export type ThemeId = (typeof STYLE_IDS)[number];
 
 export interface ThemeTokens {
   id: ThemeId;

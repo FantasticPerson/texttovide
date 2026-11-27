@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { STYLE_IDS } from "../styles/types";
 
 export const AiImageAssetSchema = z.object({
   id: z.string().min(1),
@@ -34,7 +35,7 @@ export const AssetItemSchema = z.discriminatedUnion("type", [
 ]);
 
 export const AssetsManifestSchema = z.object({
-  style: z.enum(["dark-tech", "warm-editorial"]).default("dark-tech"),
+  style: z.enum(STYLE_IDS).default("dark-tech"),
   assets: z.array(AssetItemSchema).min(1),
 });
 

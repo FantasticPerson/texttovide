@@ -18,7 +18,7 @@
 4. **Image Prompt DNA**：AI 生图时必须锁死的背景 HEX、材质/画风关键词、负向禁令。
 
 ## Step 3 · 落地 4 件套到 `src/styles/<style-id>/`
-确认方向无误后，生成标准 4 件套并注册到 `src/styles/index.ts` 与 `src/schema/storyboard.ts`：
+确认方向无误后，生成标准 4 件套，并将 `<style-id>` 加入 `src/styles/types.ts`（`STYLE_IDS` 单点真源）与 `src/styles/index.ts`（`themes` 映射）——Zod Schema、CLI `--theme` 与 `--list-themes` 会自动同步生效：
 - `src/styles/<style-id>/tokens.ts`
 - `src/styles/<style-id>/style-guide.md`
 - `src/styles/<style-id>/image-prompt.md`

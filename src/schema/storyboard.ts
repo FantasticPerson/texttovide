@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { STYLE_IDS } from "../styles/types";
 
 const nonEmpty = (max: number, label: string) =>
   z
@@ -230,7 +231,7 @@ export const SceneSchema = z.discriminatedUnion("type", [
 
 export const StoryboardSchema = z.object({
   title: nonEmpty(36, "视频标题"),
-  theme: z.enum(["dark-tech", "warm-editorial"]).default("dark-tech"),
+  theme: z.enum(STYLE_IDS).default("dark-tech"),
   fps: z.number().int().min(24).max(60).default(30),
   width: z.number().int().default(1920),
   height: z.number().int().default(1080),

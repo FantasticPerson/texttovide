@@ -1,15 +1,14 @@
-import { ThemeId, ThemeTokens } from "./types";
+import { STYLE_IDS, ThemeId, ThemeTokens } from "./types";
 import { darkTechTokens } from "./dark-tech/tokens";
 import { warmEditorialTokens } from "./warm-editorial/tokens";
 
+export { STYLE_IDS } from "./types";
 export type { ThemeId, ThemeTokens } from "./types";
 
 export const themes: Record<ThemeId, ThemeTokens> = {
   "dark-tech": darkTechTokens,
   "warm-editorial": warmEditorialTokens,
 };
-
-export const STYLE_IDS: ThemeId[] = ["dark-tech", "warm-editorial"];
 
 export function resolveTheme(themeId: ThemeId, invert = false): ThemeTokens {
   if (!invert) return themes[themeId];
