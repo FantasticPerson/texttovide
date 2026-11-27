@@ -21,7 +21,6 @@
       "type": "hook",
       "chapter": "开场",
       "transition": "zoom",
-      "camera": "zoom-in",
       "headline": "把标杆片的==镜头语言==变成**可复用组件**",
       "subline": "架构拓扑 · 数据仪表盘 · 多框描边 · 聚光灯聚焦",
       "durationSec": 4.2
@@ -32,7 +31,6 @@
       "chapter": "架构拓扑",
       "invert": true,
       "transition": "wipe",
-      "camera": "zoom-in",
       "title": "多模态架构：**多路汇聚**再分叉",
       "layout": "converge",
       "inputs": [
@@ -52,7 +50,6 @@
       "type": "diagram",
       "chapter": "架构拓扑",
       "transition": "slide-left",
-      "camera": "zoom-out",
       "title": "中心辐射：用**个人 IP**掌控全部渠道",
       "layout": "hub",
       "center": { "label": "我", "sub": "内容母体", "tone": "accent" },
@@ -70,7 +67,6 @@
       "chapter": "数据指标",
       "invert": true,
       "transition": "slide-up",
-      "camera": "zoom-in",
       "title": "本地推理速度：**环形仪表盘**对比",
       "mode": "gauges",
       "items": [
@@ -113,7 +109,6 @@
       "chapter": "网页标注",
       "invert": true,
       "transition": "zoom",
-      "camera": "zoom-in",
       "title": "真实网页截图 + **多框依次描边**圈重点",
       "image": "assets/workflow-test/remotion-home.png",
       "variant": "browser",
@@ -158,7 +153,6 @@
       "chapter": "总结",
       "invert": true,
       "transition": "slide-up",
-      "camera": "zoom-out",
       "title": "6 大视觉积木：**聚光灯模式**逐卡扫亮",
       "columns": 3,
       "focusMode": true,

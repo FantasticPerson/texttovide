@@ -91,10 +91,11 @@ export const SceneShell: React.FC<SceneShellProps> = ({
     clipPath = rightInset > 0.1 ? `inset(0 ${rightInset}% 0 0)` : undefined;
   }
 
-  // 持续镜头呼吸运动（仅作用于主舞台，保持顶栏与字幕绝对稳定）
+  // 持续镜头呼吸运动（推荐仅用于配图/插画屏；纯文字 UI 屏默认 none 以避免 Chromium 亚像素抖动）
   const camP = interpolate(frame, [0, Math.max(1, durationInFrames)], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
+    easing: Easing.inOut(Easing.sin),
   });
   let camScale = 1;
   let camX = 0;
@@ -110,7 +111,10 @@ export const SceneShell: React.FC<SceneShellProps> = ({
     camX = -18 + 36 * camP;
   }
 
-  const shellTransform = `translate3d(${tx}px, ${ty}px, 0) scale(${tScale})`;
+  const isShellIdle = Math.abs(tx) < 0.05 && Math.abs(ty) < 0.05 && Math.abs(tScale - 1) < 0.0005;
+  const shellTransform = isShellIdle
+    ? undefined
+    : `translate3d(${tx}px, ${ty}px, 0) scale(${tScale})`;
   const stageTransform =
     camera === "none" ? undefined : `translate3d(${camX}px, 0, 0) scale(${camScale})`;
 
@@ -197,6 +201,8 @@ export const SceneShell: React.FC<SceneShellProps> = ({
             justifyContent: "center",
             transform: stageTransform,
             transformOrigin: "center center",
+            willChange: stageTransform ? "transform" : undefined,
+            backfaceVisibility: stageTransform ? "hidden" : undefined,
           }}
         >
           {children}
