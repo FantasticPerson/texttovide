@@ -1,8 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { buildTimeline } from "../src/timeline/build";
+import { parseThemeArg } from "./parse-theme";
 
-const slug = process.argv[2] || "demo";
+const args = process.argv.slice(2);
+const themeOverride = parseThemeArg(args);
+const slug = args.find((a, i) => !a.startsWith("--") && args[i - 1] !== "--theme") || "demo";
 const dir = path.resolve(process.cwd(), "content", slug);
 const storyboardPath = path.join(dir, "storyboard.json");
 const timelinePath = path.join(dir, "timeline.json");
@@ -13,11 +16,14 @@ if (!fs.existsSync(storyboardPath)) {
 }
 
 const raw = JSON.parse(fs.readFileSync(storyboardPath, "utf-8"));
+if (themeOverride) {
+  raw.theme = themeOverride;
+}
 const timeline = buildTimeline(raw);
 
 fs.writeFileSync(timelinePath, JSON.stringify(timeline, null, 2) + "\n", "utf-8");
 
-console.log(`✓ 校验通过并生成: content/${slug}/timeline.json`);
+console.log(`✓ 校验通过并生成: content/${slug}/timeline.json (风格: ${timeline.theme})`);
 console.log(
   `  画布: ${timeline.width}x${timeline.height} @ ${timeline.fps}fps | 总时长: ${timeline.totalSec}s (${timeline.totalFrames} 帧)`,
 );

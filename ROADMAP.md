@@ -76,3 +76,5 @@
   - 抽帧目检 `05b-metrics-f946.png` 与 `05c-metrics-f1114.png` 排版无溢出、双皮肤对比清晰，导出 `out/components-showcase.mp4`（`1920×1080 @ 30fps`，`68.42s`，2052 帧，9.7 MB）。
 - **2026-11-27（出片 SOP 沉淀）**：
   - 新增 `WORKFLOW.md`（固化 5 步出片验收流程、13 类组件选型矩阵、动效/音频/防抖避坑铁律与局部重跑技巧），并在 `AGENTS.md` 挂载必读入口，确保任意新会话开箱即按统一标准出片。
+- **2026-11-27（支持手动选择视觉风格）**：
+  - 新增 `scripts/parse-theme.ts`，为 `run-pipeline.ts`、`fetch-assets.ts`、`build-timeline.ts`、`render-video.ts` 全链路接入 `--theme <dark-tech|warm-editorial>` 手动覆写与 `--list-themes` 查询（`render-video.ts --theme` 自动输出 `out/<slug>-<theme>.mp4` 不覆盖原片），并同步更新 `WORKFLOW.md` 与 `README.md`。

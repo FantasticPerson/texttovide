@@ -5,12 +5,15 @@ import http from "node:http";
 import { spawn } from "node:child_process";
 import { pathToFileURL } from "node:url";
 import { AssetsManifestSchema, AssetItem } from "../src/schema/assets";
+import { parseThemeArg } from "./parse-theme";
 
-const slug = process.argv[2];
-const force = process.argv.includes("--force");
+const args = process.argv.slice(2);
+const themeOverride = parseThemeArg(args);
+const slug = args.find((a, i) => !a.startsWith("--") && args[i - 1] !== "--theme");
+const force = args.includes("--force");
 
-if (!slug || slug.startsWith("--")) {
-  console.error("用法: tsx scripts/fetch-assets.ts <slug> [--force]");
+if (!slug) {
+  console.error("用法: tsx scripts/fetch-assets.ts <slug> [--theme <style>] [--force]");
   process.exit(1);
 }
 
@@ -207,8 +210,9 @@ async function handleWebCapture(
 }
 
 async function main() {
-  const styleSpec = loadStyleImagePrompt(manifest.style);
-  console.log(`━━ 素材生产开始 [${slug}] | 风格包: ${manifest.style} | 共 ${manifest.assets.length} 项 ━━`);
+  const activeStyle = themeOverride ?? manifest.style;
+  const styleSpec = loadStyleImagePrompt(activeStyle);
+  console.log(`━━ 素材生产开始 [${slug}] | 风格包: ${activeStyle} | 共 ${manifest.assets.length} 项 ━━`);
 
   for (let i = 0; i < manifest.assets.length; i++) {
     const item = manifest.assets[i];

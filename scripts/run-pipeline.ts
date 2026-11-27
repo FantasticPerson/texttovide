@@ -1,18 +1,28 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
+import { parseThemeArg, printThemes } from "./parse-theme";
 
 const args = process.argv.slice(2);
-const slug = args.find((a) => !a.startsWith("--"));
+if (args.includes("--list-themes")) {
+  printThemes();
+  process.exit(0);
+}
+
+const themeOverride = parseThemeArg(args);
+const slug = args.find((a, i) => !a.startsWith("--") && args[i - 1] !== "--theme");
 const skipAssets = args.includes("--skip-assets");
 const framesOnly = args.includes("--frames-only");
 const forceAssets = args.includes("--force-assets");
 
 if (!slug) {
-  console.error("用法: tsx scripts/run-pipeline.ts <slug> [--skip-assets] [--frames-only] [--force-assets]");
+  console.error(
+    "用法: tsx scripts/run-pipeline.ts <slug> [--theme dark-tech|warm-editorial] [--skip-assets] [--frames-only] [--force-assets] [--list-themes]",
+  );
   process.exit(1);
 }
 
+const themeArgs = themeOverride ? ["--theme", themeOverride] : [];
 const tsxBin = path.resolve(process.cwd(), "node_modules", ".bin", "tsx");
 const run = (script: string, extraArgs: string[] = []) => {
   console.log(`\n▶ 运行 ${script} ${extraArgs.join(" ")}`);
@@ -25,13 +35,14 @@ run("scripts/verify-styles.ts");
 // 2. 自动生产素材（生图 + 网页截图）
 const manifestPath = path.resolve(process.cwd(), "content", slug, "assets-manifest.json");
 if (!skipAssets && fs.existsSync(manifestPath)) {
-  run("scripts/fetch-assets.ts", forceAssets ? [slug, "--force"] : [slug]);
+  const assetArgs = [slug, ...themeArgs, ...(forceAssets ? ["--force"] : [])];
+  run("scripts/fetch-assets.ts", assetArgs);
 } else {
   console.log("\n▶ 跳过素材生产（无 assets-manifest.json 或指定 --skip-assets）");
 }
 
 // 3. 校验分镜并计算基础时间轴
-run("scripts/build-timeline.ts", [slug]);
+run("scripts/build-timeline.ts", [slug, ...themeArgs]);
 
 // 3.5 若分镜含 narration 且本地已就绪 Qwen3-TTS 与本人参考音，自动合成克隆旁白并对齐时间轴
 const ttsPy = path.resolve(process.cwd(), ".venv-tts", "bin", "python");
@@ -49,7 +60,7 @@ run("scripts/render-frames.ts", [slug]);
 
 // 5. 渲染完整 MP4
 if (!framesOnly) {
-  run("scripts/render-video.ts", [slug]);
+  run("scripts/render-video.ts", [slug, ...themeArgs]);
 }
 
-console.log(`\n✓ 工作流完成 [${slug}]`);
+console.log(`\n✓ 工作流完成 [${slug}]${themeOverride ? ` (风格: ${themeOverride})` : ""}`);

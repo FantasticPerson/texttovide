@@ -64,6 +64,9 @@ pnpm pipeline <slug>
 | 场景 | 命令 |
 | --- | --- |
 | 一键全链路出片 | `pnpm pipeline <slug>` |
+| 手动指定风格一键出片 | `pnpm pipeline <slug> --theme dark-tech` 或 `--theme warm-editorial` |
+| 查看全部可用视觉风格包 | `pnpm pipeline --list-themes` |
+| 同分镜换皮肤快速重导（复用旁白，输出 `<slug>-<theme>.mp4`） | `pnpm render <slug> --theme warm-editorial` |
 | 仅抽帧目检（不导 MP4） | `pnpm pipeline <slug> --frames-only` |
 | 跳过素材抓取 | `pnpm pipeline <slug> --skip-assets` |
 | 强制重生成全部素材 | `pnpm pipeline <slug> --force-assets` |
