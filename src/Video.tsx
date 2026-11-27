@@ -21,6 +21,9 @@ import { QuoteScene } from "./scenes/QuoteScene";
 import { MockupScene } from "./scenes/MockupScene";
 import { GridScene } from "./scenes/GridScene";
 import { MediaScene } from "./scenes/MediaScene";
+import { DiagramScene } from "./scenes/DiagramScene";
+import { MetricsScene } from "./scenes/MetricsScene";
+import { VerdictScene } from "./scenes/VerdictScene";
 import { OutroScene } from "./scenes/OutroScene";
 
 export type VideoProps = {
@@ -48,6 +51,12 @@ const renderSceneBody = (item: TimelineScene, theme: ThemeTokens) => {
       return <GridScene scene={scene} itemTimings={itemTimings} theme={theme} />;
     case "media":
       return <MediaScene scene={scene} itemTimings={itemTimings} theme={theme} />;
+    case "diagram":
+      return <DiagramScene scene={scene} itemTimings={itemTimings} theme={theme} />;
+    case "metrics":
+      return <MetricsScene scene={scene} itemTimings={itemTimings} theme={theme} />;
+    case "verdict":
+      return <VerdictScene scene={scene} itemTimings={itemTimings} theme={theme} />;
     case "outro":
       return <OutroScene scene={scene} itemTimings={itemTimings} theme={theme} />;
   }
@@ -78,18 +87,25 @@ const renderSceneSfx = (
   let itemVol = 0;
   let maxItems = 0;
 
-  if (type === "bullets" || type === "compare" || type === "flow" || type === "grid") {
+  if (
+    type === "bullets" ||
+    type === "compare" ||
+    type === "flow" ||
+    type === "grid" ||
+    type === "diagram" ||
+    type === "metrics"
+  ) {
     itemFile = "sfx/pop.wav";
     itemVol = Math.min(1, 0.28 * sfxScale);
     maxItems = 6;
-  } else if (type === "mockup") {
+  } else if (type === "mockup" || type === "verdict") {
     itemFile = "sfx/click.wav";
-    itemVol = Math.min(1, 0.22 * sfxScale);
+    itemVol = Math.min(1, 0.24 * sfxScale);
     maxItems = 5;
   } else if (type === "media") {
     itemFile = "sfx/click.wav";
     itemVol = Math.min(1, 0.24 * sfxScale);
-    maxItems = 1;
+    maxItems = 4;
   }
 
   if (itemFile && maxItems > 0) {

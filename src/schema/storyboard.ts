@@ -107,7 +107,18 @@ export const GridSceneSchema = z.object({
   type: z.literal("grid"),
   title: nonEmpty(24, "场景标题").optional(),
   columns: z.union([z.literal(2), z.literal(3), z.literal(4)]).default(4),
+  /** 聚光灯模式：按 itemTimings 逐卡高亮微放大，其余卡片自动压暗 */
+  focusMode: z.boolean().default(false),
   cards: z.array(GridCardSchema).min(4).max(8),
+});
+
+const HighlightBoxSchema = z.object({
+  x: z.number().min(0).max(100),
+  y: z.number().min(0).max(100),
+  w: z.number().min(1).max(100),
+  h: z.number().min(1).max(100),
+  label: nonEmpty(20, "高亮框标签").optional(),
+  color: z.string().optional(),
 });
 
 export const MediaSceneSchema = z.object({
@@ -115,18 +126,74 @@ export const MediaSceneSchema = z.object({
   type: z.literal("media"),
   title: nonEmpty(24, "场景标题"),
   image: z.string().min(1, "图片路径不能为空"),
-  variant: z.enum(["browser", "illustration", "plain"]).default("plain"),
+  variant: z.enum(["browser", "illustration", "phone", "plain"]).default("plain"),
   urlLabel: nonEmpty(48, "网址栏显示").optional(),
   caption: nonEmpty(30, "图片说明").optional(),
-  // 可选高亮框（百分比 0~100）
-  highlightBox: z
-    .object({
-      x: z.number().min(0).max(100),
-      y: z.number().min(0).max(100),
-      w: z.number().min(1).max(100),
-      h: z.number().min(1).max(100),
-    })
-    .optional(),
+  /** 长图缓慢向上平移浏览 */
+  scroll: z.boolean().default(false),
+  // 可选单个高亮框（向后兼容）
+  highlightBox: HighlightBoxSchema.optional(),
+  // 可选多个高亮框（按时间轴依次描边绘制弹出）
+  highlightBoxes: z.array(HighlightBoxSchema).max(4).optional(),
+});
+
+const DiagramNodeSchema = z.object({
+  label: nonEmpty(14, "节点名称"),
+  sub: nonEmpty(20, "节点副说明").optional(),
+  tone: z.enum(["default", "accent", "danger"]).default("default"),
+});
+
+export const DiagramSceneSchema = z.object({
+  ...baseSceneFields,
+  type: z.literal("diagram"),
+  title: nonEmpty(26, "架构标题"),
+  layout: z.enum(["converge", "hub"]).default("converge"),
+  center: DiagramNodeSchema,
+  /** converge 模式：左侧输入节点；hub 模式：辐射卫星节点 */
+  inputs: z.array(DiagramNodeSchema).min(2).max(6),
+  /** converge 模式可选右侧输出节点 */
+  outputs: z.array(DiagramNodeSchema).max(4).optional(),
+});
+
+export const MetricsSceneSchema = z.object({
+  ...baseSceneFields,
+  type: z.literal("metrics"),
+  title: nonEmpty(26, "指标标题"),
+  mode: z.enum(["cards", "gauges", "bars"]).default("cards"),
+  items: z
+    .array(
+      z.object({
+        label: nonEmpty(18, "指标名"),
+        value: z.number(),
+        /** 仪表盘/进度条满格上限（默认取本组最大值或 100） */
+        max: z.number().positive().optional(),
+        prefix: nonEmpty(8, "前缀").optional(),
+        suffix: nonEmpty(12, "单位后缀").optional(),
+        note: nonEmpty(26, "补充说明").optional(),
+        trend: z.enum(["up", "down", "neutral"]).optional(),
+        featured: z.boolean().optional(),
+        dimmed: z.boolean().optional(),
+      }),
+    )
+    .min(2)
+    .max(8),
+});
+
+export const VerdictSceneSchema = z.object({
+  ...baseSceneFields,
+  type: z.literal("verdict"),
+  title: nonEmpty(26, "判定标题").optional(),
+  mode: z.enum(["judge", "pills"]).default("judge"),
+  items: z
+    .array(
+      z.object({
+        label: nonEmpty(22, "条目文案"),
+        detail: nonEmpty(30, "补充说明").optional(),
+        status: z.enum(["pass", "fail", "neutral"]).default("neutral"),
+      }),
+    )
+    .min(2)
+    .max(5),
 });
 
 export const OutroSceneSchema = z.object({
@@ -146,6 +213,9 @@ export const SceneSchema = z.discriminatedUnion("type", [
   MockupSceneSchema,
   GridSceneSchema,
   MediaSceneSchema,
+  DiagramSceneSchema,
+  MetricsSceneSchema,
+  VerdictSceneSchema,
   OutroSceneSchema,
 ]);
 
@@ -182,6 +252,9 @@ export type QuoteScene = z.infer<typeof QuoteSceneSchema>;
 export type MockupScene = z.infer<typeof MockupSceneSchema>;
 export type GridScene = z.infer<typeof GridSceneSchema>;
 export type MediaScene = z.infer<typeof MediaSceneSchema>;
+export type DiagramScene = z.infer<typeof DiagramSceneSchema>;
+export type MetricsScene = z.infer<typeof MetricsSceneSchema>;
+export type VerdictScene = z.infer<typeof VerdictSceneSchema>;
 export type OutroScene = z.infer<typeof OutroSceneSchema>;
 export type Scene = z.infer<typeof SceneSchema>;
 export type Storyboard = z.infer<typeof StoryboardSchema>;

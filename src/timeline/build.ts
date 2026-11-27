@@ -50,8 +50,24 @@ function collectSceneItemTexts(scene: Scene): string[] {
       return scene.lines.map((l) => l.text);
     case "grid":
       return scene.cards.map((c) => `${c.title} ${c.desc ?? ""}`);
-    case "media":
-      return [scene.title, scene.caption ?? ""].filter(Boolean);
+    case "media": {
+      const boxTexts = scene.highlightBoxes?.length
+        ? scene.highlightBoxes.map((b, i) => b.label ?? `高亮区域${i + 1}`)
+        : scene.caption
+          ? [scene.caption]
+          : [];
+      return [scene.title, ...boxTexts];
+    }
+    case "diagram":
+      return [
+        ...scene.inputs.map((n) => `${n.label} ${n.sub ?? ""}`),
+        `${scene.center.label} ${scene.center.sub ?? ""}`,
+        ...(scene.outputs ?? []).map((n) => `${n.label} ${n.sub ?? ""}`),
+      ];
+    case "metrics":
+      return scene.items.map((m) => `${m.label} ${m.note ?? ""}`);
+    case "verdict":
+      return scene.items.map((v) => `${v.label} ${v.detail ?? ""}`);
     case "outro":
       return scene.subline
         ? [scene.conclusion, scene.subline]
@@ -65,9 +81,12 @@ function getSceneHeaderText(scene: Scene): string {
     case "compare":
     case "flow":
     case "media":
+    case "diagram":
+    case "metrics":
       return `${scene.kicker ?? ""} ${scene.title}`;
     case "mockup":
     case "grid":
+    case "verdict":
       return `${scene.kicker ?? ""} ${scene.title ?? ""}`;
     default:
       return scene.kicker ?? "";
@@ -105,6 +124,12 @@ function estimateReadingSec(scene: Scene): number {
       return Math.max(5.5, Math.min(10.5, Number((rawSec * 0.78).toFixed(2))));
     case "quote":
       return Math.max(4.5, Math.min(7.5, Number((rawSec * 0.78).toFixed(2))));
+    case "diagram":
+      return Math.max(5.5, Math.min(9.5, Number((rawSec * 0.78).toFixed(2))));
+    case "metrics":
+      return Math.max(5.0, Math.min(9.0, Number((rawSec * 0.76).toFixed(2))));
+    case "verdict":
+      return Math.max(4.8, Math.min(8.5, Number((rawSec * 0.78).toFixed(2))));
     default:
       return Math.max(4.5, Math.min(10.0, Number(rawSec.toFixed(2))));
   }
@@ -152,11 +177,12 @@ function buildItemTimings(
     ];
   }
 
-  // grid 卡片快速错峰入场，避免 8 张卡拖太久
-  if (scene.type === "grid") {
+  // grid 非聚光灯模式 & diagram 拓扑图快速错峰入场，让完整结构尽早呈现并保持光点流动
+  if ((scene.type === "grid" && !scene.focusMode) || scene.type === "diagram") {
+    const maxStep = scene.type === "diagram" ? Math.round(0.42 * fps) : Math.round(0.22 * fps);
     const stepFrames = Math.max(
       4,
-      Math.min(Math.round(0.22 * fps), Math.floor(activeSpan / texts.length)),
+      Math.min(maxStep, Math.floor((activeSpan * 0.65) / texts.length)),
     );
     return texts.map((_, idx) => ({
       startFrame: activeStart + idx * stepFrames,

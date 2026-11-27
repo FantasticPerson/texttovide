@@ -19,7 +19,7 @@ texttovideo-new/
 │   ├── motion/               # 可复用原子交互动效积木（打字机、光标、数字滚动、深空背景）
 │   ├── timeline/             # storyboard → timeline 纯函数计算
 │   ├── components/           # 公共基础件（Background、SceneShell、ChapterBar、HighlightText）
-│   ├── scenes/               # 10 种语义化场景组件（含 Mockup、Media、Grid、Chapter 等）
+│   ├── scenes/               # 13 种语义化场景组件（含 Diagram、Metrics、Verdict、Mockup、Media、Grid、Chapter 等）
 │   ├── Video.tsx             # 总组装器（场景序列 + 章节条 + 旁白 + 字幕 + BGM）
 │   ├── Root.tsx              # Remotion Composition 注册
 │   └── index.ts              # Remotion 入口

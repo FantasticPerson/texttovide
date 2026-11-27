@@ -1,0 +1,524 @@
+{
+  "title": "新组件与动效全览：16:9 知识视频引擎 V4",
+  "theme": "warm-editorial",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "chapters": [
+    "开场",
+    "架构拓扑",
+    "数据指标",
+    "网页标注",
+    "判定聚焦",
+    "总结"
+  ],
+  "totalFrames": 1728,
+  "totalSec": 57.6,
+  "bgm": {
+    "file": "bgm/tech-groove.wav",
+    "volume": 0.24,
+    "fadeInSec": 0.8,
+    "fadeOutSec": 1.6
+  },
+  "sfx": {
+    "enabled": true,
+    "volume": 1
+  },
+  "scenes": [
+    {
+      "scene": {
+        "id": "01",
+        "chapter": "开场",
+        "durationSec": 4.2,
+        "type": "hook",
+        "headline": "把标杆片的==镜头语言==变成**可复用组件**",
+        "subline": "架构拓扑 · 数据仪表盘 · 多框描边 · 聚光灯聚焦"
+      },
+      "index": 0,
+      "startFrame": 0,
+      "durationInFrames": 126,
+      "readingSec": 4.2,
+      "itemTimings": [
+        {
+          "startFrame": 6,
+          "endFrame": 35
+        },
+        {
+          "startFrame": 35,
+          "endFrame": 119
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "02",
+        "chapter": "架构拓扑",
+        "invert": true,
+        "durationSec": 6.5,
+        "type": "diagram",
+        "title": "多模态架构：**多路汇聚**再分叉",
+        "layout": "converge",
+        "center": {
+          "label": "统一视频引擎",
+          "sub": "Schema + Remotion",
+          "tone": "accent"
+        },
+        "inputs": [
+          {
+            "label": "文字指令",
+            "sub": "Markdown / Prompt",
+            "tone": "default"
+          },
+          {
+            "label": "视觉图片",
+            "sub": "截图与参考图",
+            "tone": "default"
+          },
+          {
+            "label": "参考音频",
+            "sub": "20s 零样本克隆",
+            "tone": "default"
+          }
+        ],
+        "outputs": [
+          {
+            "label": "16:9 知识成片",
+            "sub": "带字幕与微音效",
+            "tone": "accent"
+          },
+          {
+            "label": "纯手剪耗时",
+            "sub": "已淘汰",
+            "tone": "danger"
+          }
+        ]
+      },
+      "index": 1,
+      "startFrame": 126,
+      "durationInFrames": 195,
+      "readingSec": 6.5,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 188
+        },
+        {
+          "startFrame": 30,
+          "endFrame": 188
+        },
+        {
+          "startFrame": 43,
+          "endFrame": 188
+        },
+        {
+          "startFrame": 56,
+          "endFrame": 188
+        },
+        {
+          "startFrame": 69,
+          "endFrame": 188
+        },
+        {
+          "startFrame": 82,
+          "endFrame": 188
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "03",
+        "chapter": "架构拓扑",
+        "durationSec": 6.2,
+        "type": "diagram",
+        "title": "中心辐射：用**个人 IP**掌控全部渠道",
+        "layout": "hub",
+        "center": {
+          "label": "我",
+          "sub": "内容母体",
+          "tone": "accent"
+        },
+        "inputs": [
+          {
+            "label": "公众号长文",
+            "sub": "深度图文沉淀",
+            "tone": "default"
+          },
+          {
+            "label": "视频号 / B 站",
+            "sub": "自动转 16:9 视频",
+            "tone": "default"
+          },
+          {
+            "label": "个人网站",
+            "sub": "自有流量资产",
+            "tone": "default"
+          },
+          {
+            "label": "核心社群",
+            "sub": "高粘性复利反馈",
+            "tone": "default"
+          }
+        ]
+      },
+      "index": 2,
+      "startFrame": 321,
+      "durationInFrames": 186,
+      "readingSec": 6.2,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 179
+        },
+        {
+          "startFrame": 30,
+          "endFrame": 179
+        },
+        {
+          "startFrame": 43,
+          "endFrame": 179
+        },
+        {
+          "startFrame": 56,
+          "endFrame": 179
+        },
+        {
+          "startFrame": 69,
+          "endFrame": 179
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "04",
+        "chapter": "数据指标",
+        "invert": true,
+        "durationSec": 5.6,
+        "type": "metrics",
+        "title": "本地推理速度：**环形仪表盘**对比",
+        "mode": "gauges",
+        "items": [
+          {
+            "label": "M1 Pro · 本地克隆",
+            "value": 24,
+            "max": 40,
+            "suffix": "kHz",
+            "note": "Qwen3-TTS 零成本稳定跑通",
+            "featured": true
+          },
+          {
+            "label": "云端付费接口",
+            "value": 12,
+            "max": 40,
+            "suffix": "$/月",
+            "note": "受区域与额度限制",
+            "dimmed": true
+          }
+        ]
+      },
+      "index": 3,
+      "startFrame": 507,
+      "durationInFrames": 168,
+      "readingSec": 5.6,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 83
+        },
+        {
+          "startFrame": 83,
+          "endFrame": 161
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "05",
+        "chapter": "数据指标",
+        "durationSec": 5.8,
+        "type": "metrics",
+        "title": "评测对比：**柱状图**一眼锁定主角",
+        "mode": "bars",
+        "items": [
+          {
+            "label": "手写 AE 动效",
+            "value": 92,
+            "max": 100,
+            "suffix": "分"
+          },
+          {
+            "label": "本引擎自动出片",
+            "value": 88,
+            "max": 100,
+            "suffix": "分",
+            "featured": true
+          },
+          {
+            "label": "传统 PPT 录屏",
+            "value": 54,
+            "max": 100,
+            "suffix": "分"
+          },
+          {
+            "label": "纯文字滚动",
+            "value": 36,
+            "max": 100,
+            "suffix": "分",
+            "dimmed": true
+          }
+        ]
+      },
+      "index": 4,
+      "startFrame": 675,
+      "durationInFrames": 174,
+      "readingSec": 5.8,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 44
+        },
+        {
+          "startFrame": 44,
+          "endFrame": 82
+        },
+        {
+          "startFrame": 82,
+          "endFrame": 112
+        },
+        {
+          "startFrame": 112,
+          "endFrame": 167
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "06",
+        "chapter": "网页标注",
+        "invert": true,
+        "durationSec": 6.2,
+        "type": "media",
+        "title": "真实网页截图 + **多框依次描边**圈重点",
+        "image": "assets/workflow-test/remotion-home.png",
+        "variant": "browser",
+        "urlLabel": "https://www.remotion.dev",
+        "caption": "支持 SVG 一笔描边动画与多标签依次聚焦",
+        "scroll": false,
+        "highlightBoxes": [
+          {
+            "x": 15,
+            "y": 11,
+            "w": 55,
+            "h": 26,
+            "label": "核心定位"
+          },
+          {
+            "x": 47,
+            "y": 39,
+            "w": 39,
+            "h": 11,
+            "label": "一键创建命令",
+            "color": "#F59E0B"
+          }
+        ]
+      },
+      "index": 5,
+      "startFrame": 849,
+      "durationInFrames": 186,
+      "readingSec": 6.2,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 99
+        },
+        {
+          "startFrame": 99,
+          "endFrame": 120
+        },
+        {
+          "startFrame": 120,
+          "endFrame": 179
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "07",
+        "chapter": "判定聚焦",
+        "invert": true,
+        "durationSec": 5.4,
+        "type": "verdict",
+        "title": "为什么 AI 突然不好用了？==直接给判定==",
+        "mode": "judge",
+        "items": [
+          {
+            "label": "模型悄悄变笨了",
+            "detail": "绝大多数时候只是体感误判",
+            "status": "fail"
+          },
+          {
+            "label": "上下文太长装不下",
+            "detail": "单窗口塞满无关历史导致失焦",
+            "status": "pass"
+          }
+        ]
+      },
+      "index": 6,
+      "startFrame": 1035,
+      "durationInFrames": 162,
+      "readingSec": 5.4,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 70
+        },
+        {
+          "startFrame": 70,
+          "endFrame": 155
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "08",
+        "chapter": "判定聚焦",
+        "durationSec": 6.2,
+        "type": "verdict",
+        "title": "玻璃胶囊**逐条聚光灯**拆解",
+        "mode": "pills",
+        "items": [
+          {
+            "label": "单窗口只干一件事",
+            "detail": "写完一个模块就开新对话",
+            "status": "neutral"
+          },
+          {
+            "label": "把偏好固化成规则",
+            "detail": "靠 Rules 和 Hooks 而不是反复提醒",
+            "status": "neutral"
+          },
+          {
+            "label": "关键步骤留自动化验证",
+            "detail": "先抽帧目检再导完整成片",
+            "status": "neutral"
+          }
+        ]
+      },
+      "index": 7,
+      "startFrame": 1197,
+      "durationInFrames": 186,
+      "readingSec": 6.2,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 58
+        },
+        {
+          "startFrame": 58,
+          "endFrame": 106
+        },
+        {
+          "startFrame": 106,
+          "endFrame": 179
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "09",
+        "chapter": "总结",
+        "invert": true,
+        "durationSec": 7.5,
+        "type": "grid",
+        "title": "6 大视觉积木：**聚光灯模式**逐卡扫亮",
+        "columns": 3,
+        "focusMode": true,
+        "cards": [
+          {
+            "tag": "01",
+            "title": "贝塞尔光点",
+            "desc": "多路汇聚与中心辐射"
+          },
+          {
+            "tag": "02",
+            "title": "环形速度表",
+            "desc": "数字滚动 + 弧线扫过"
+          },
+          {
+            "tag": "03",
+            "title": "评测柱状图",
+            "desc": "单柱高亮一眼聚焦"
+          },
+          {
+            "tag": "04",
+            "title": "多框描边",
+            "desc": "网页/手机壳依次圈重点"
+          },
+          {
+            "tag": "05",
+            "title": "红叉绿勾",
+            "desc": "强反差结论印章"
+          },
+          {
+            "tag": "06",
+            "title": "荧光笔划重点",
+            "desc": "双等号语法自动扫过"
+          }
+        ]
+      },
+      "index": 8,
+      "startFrame": 1383,
+      "durationInFrames": 225,
+      "readingSec": 7.5,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 47
+        },
+        {
+          "startFrame": 47,
+          "endFrame": 76
+        },
+        {
+          "startFrame": 76,
+          "endFrame": 104
+        },
+        {
+          "startFrame": 104,
+          "endFrame": 135
+        },
+        {
+          "startFrame": 135,
+          "endFrame": 159
+        },
+        {
+          "startFrame": 159,
+          "endFrame": 218
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "10",
+        "chapter": "总结",
+        "durationSec": 4,
+        "type": "outro",
+        "conclusion": "写完一篇 Markdown，直接出**高定级视频**",
+        "subline": "13 类语义化场景组件 · 双皮肤随时切换"
+      },
+      "index": 9,
+      "startFrame": 1608,
+      "durationInFrames": 120,
+      "readingSec": 4,
+      "itemTimings": [
+        {
+          "startFrame": 6,
+          "endFrame": 46
+        },
+        {
+          "startFrame": 46,
+          "endFrame": 113
+        }
+      ]
+    }
+  ]
+}

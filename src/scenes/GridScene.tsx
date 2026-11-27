@@ -51,12 +51,17 @@ export const GridScene: React.FC<Props> = ({ scene, itemTimings, theme }) => {
       >
         {scene.cards.map((card, idx) => {
           const timing = itemTimings[idx] ?? { startFrame: 8 + idx * 6, endFrame: 9999 };
+          const nextTiming = itemTimings[idx + 1];
           const entered = frame >= timing.startFrame;
+          const isPast = nextTiming ? frame >= nextTiming.startFrame : false;
+          const isSpotlit = Boolean(scene.focusMode) && entered && !isPast;
+          const isDimmed = Boolean(scene.focusMode) && entered && isPast;
+
           const s = entered
             ? spring({ frame: frame - timing.startFrame, fps, config: motion.spring })
             : 0;
 
-          const isFeatured = Boolean(card.featured);
+          const isFeatured = Boolean(card.featured) || isSpotlit;
           const cardBg = isFeatured
             ? theme.isDark
               ? theme.colors.surfaceActive
@@ -83,13 +88,16 @@ export const GridScene: React.FC<Props> = ({ scene, itemTimings, theme }) => {
                 border: `1.5px solid ${
                   isFeatured ? theme.colors.borderActive : theme.colors.border
                 }`,
+                boxShadow: isSpotlit
+                  ? `0 0 30px ${theme.colors.accentSoft}`
+                  : "none",
                 display: "flex",
                 flexDirection: "column",
                 gap: 10,
                 minHeight: isVertical ? 140 : 156,
                 justifyContent: "space-between",
-                opacity: entered ? s : 0,
-                transform: `translateY(${(1 - s) * 18}px)`,
+                opacity: !entered ? 0 : isDimmed ? 0.48 : s,
+                transform: `translateY(${(1 - s) * 18}px) scale(${isSpotlit ? 1.035 : 1})`,
               }}
             >
               {card.tag && (

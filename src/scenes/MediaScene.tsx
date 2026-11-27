@@ -1,5 +1,5 @@
 import React from "react";
-import { Img, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { Easing, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { MediaScene as MediaSceneType, ItemTiming } from "../schema/storyboard";
 import { ThemeTokens, motion } from "../theme";
 import { HighlightText } from "../components/HighlightText";
@@ -22,18 +22,38 @@ export const MediaScene: React.FC<Props> = ({ scene, itemTimings, theme }) => {
     config: motion.spring,
   });
 
-  const boxStart = itemTimings[1]?.startFrame ?? Math.round(0.9 * fps);
-  const boxProgress =
-    frame >= boxStart
-      ? spring({ frame: frame - boxStart, fps, config: motion.spring })
-      : 0;
+  const boxes = scene.highlightBoxes?.length
+    ? scene.highlightBoxes
+    : scene.highlightBox
+      ? [scene.highlightBox]
+      : [];
 
   const imgSrc =
     scene.image.startsWith("http://") || scene.image.startsWith("https://")
       ? scene.image
       : staticFile(scene.image);
 
-  const maxImgHeight = isVertical ? 760 : variant === "browser" ? 560 : 620;
+  const maxImgHeight =
+    variant === "phone"
+      ? isVertical
+        ? 720
+        : 580
+      : isVertical
+        ? 760
+        : variant === "browser"
+          ? 560
+          : 620;
+
+  // 可选长图缓慢上移浏览
+  const scrollY = scene.scroll
+    ? interpolate(frame, [Math.round(0.8 * fps), Math.round(6.5 * fps)], [0, -140], {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+        easing: Easing.inOut(Easing.sin),
+      })
+    : 0;
+
+  const isPhone = variant === "phone";
 
   return (
     <div
@@ -60,14 +80,20 @@ export const MediaScene: React.FC<Props> = ({ scene, itemTimings, theme }) => {
       <div
         style={{
           position: "relative",
-          maxWidth: isVertical ? "100%" : 1240,
-          borderRadius: variant === "illustration" ? 22 : 18,
+          maxWidth: isPhone ? 340 : isVertical ? "100%" : 1240,
+          borderRadius: isPhone ? 42 : variant === "illustration" ? 22 : 18,
           overflow: "hidden",
-          border:
-            variant === "illustration"
+          padding: isPhone ? "14px 12px 16px" : 0,
+          border: isPhone
+            ? `5px solid ${theme.isDark ? "#334155" : "#1E293B"}`
+            : variant === "illustration"
               ? `1px solid ${theme.colors.border}`
               : `1.5px solid ${theme.colors.border}`,
-          backgroundColor: variant === "browser" ? theme.colors.windowBg : "transparent",
+          backgroundColor: isPhone
+            ? "#0B0F17"
+            : variant === "browser"
+              ? theme.colors.windowBg
+              : "transparent",
           boxShadow:
             variant === "illustration"
               ? "0 16px 44px rgba(0, 0, 0, 0.14)"
@@ -76,6 +102,27 @@ export const MediaScene: React.FC<Props> = ({ scene, itemTimings, theme }) => {
           transform: `scale(${0.96 + 0.04 * imgProgress})`,
         }}
       >
+        {/* 手机灵动岛顶栏 */}
+        {isPhone && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              paddingBottom: 10,
+            }}
+          >
+            <div
+              style={{
+                width: 88,
+                height: 20,
+                borderRadius: 99,
+                backgroundColor: "#000000",
+                border: "1px solid rgba(255,255,255,0.08)",
+              }}
+            />
+          </div>
+        )}
+
         {/* 浏览器装裱顶栏（专用于真实网页截图） */}
         {variant === "browser" && (
           <div
@@ -109,33 +156,98 @@ export const MediaScene: React.FC<Props> = ({ scene, itemTimings, theme }) => {
           </div>
         )}
 
-        <div style={{ position: "relative" }}>
+        <div
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            borderRadius: isPhone ? 26 : 0,
+            maxHeight: maxImgHeight,
+          }}
+        >
           <Img
             src={imgSrc}
             style={{
               display: "block",
               maxWidth: "100%",
-              maxHeight: maxImgHeight,
+              maxHeight: scene.scroll ? "none" : maxImgHeight,
               objectFit: "contain",
+              transform: scrollY !== 0 ? `translateY(${scrollY}px)` : "none",
             }}
           />
 
-          {scene.highlightBox && (
-            <div
-              style={{
-                position: "absolute",
-                left: `${scene.highlightBox.x}%`,
-                top: `${scene.highlightBox.y}%`,
-                width: `${scene.highlightBox.w}%`,
-                height: `${scene.highlightBox.h}%`,
-                border: `4px solid ${theme.colors.accent}`,
-                borderRadius: 10,
-                boxShadow: `0 0 0 4px ${theme.colors.accentSoft}`,
-                opacity: boxProgress,
-                transform: `scale(${1.06 - 0.06 * boxProgress})`,
-              }}
-            />
-          )}
+          {/* 多个高亮框：SVG 一笔描边绘制 + 标签弹出 */}
+          {boxes.map((box, bIdx) => {
+            const boxStart =
+              itemTimings[bIdx + 1]?.startFrame ?? Math.round((0.8 + bIdx * 1.1) * fps);
+            const draw = interpolate(frame, [boxStart, boxStart + 18], [0, 1], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+              easing: Easing.out(Easing.cubic),
+            });
+            if (draw <= 0.001) return null;
+
+            const boxColor = box.color ?? theme.colors.accent;
+
+            return (
+              <div
+                key={bIdx}
+                style={{
+                  position: "absolute",
+                  left: `${box.x}%`,
+                  top: `${box.y}%`,
+                  width: `${box.w}%`,
+                  height: `${box.h}%`,
+                  pointerEvents: "none",
+                }}
+              >
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                  style={{ display: "block", overflow: "visible" }}
+                >
+                  <rect
+                    x={0}
+                    y={0}
+                    width={100}
+                    height={100}
+                    rx={2}
+                    ry={2}
+                    pathLength={100}
+                    fill={theme.colors.accentSoft}
+                    fillOpacity={0.28 * draw}
+                    stroke={boxColor}
+                    strokeWidth={3.5}
+                    vectorEffect="non-scaling-stroke"
+                    strokeDasharray={100}
+                    strokeDashoffset={(1 - draw) * 100}
+                  />
+                </svg>
+
+                {box.label && draw > 0.6 && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: -32,
+                      left: 0,
+                      padding: "3px 12px",
+                      borderRadius: 6,
+                      backgroundColor: boxColor,
+                      color: theme.colors.accentText,
+                      fontFamily: theme.fonts.heading,
+                      fontSize: 16,
+                      fontWeight: 700,
+                      whiteSpace: "nowrap",
+                      opacity: interpolate(draw, [0.6, 1], [0, 1]),
+                    }}
+                  >
+                    {box.label}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
 

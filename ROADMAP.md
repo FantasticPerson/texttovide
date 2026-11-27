@@ -65,3 +65,6 @@
 - **2026-11-26（主模板微音效接入验收）**：
   - 在 `src/schema/storyboard.ts`、`src/timeline/build.ts` 与 `src/Video.tsx` 接入可配置微音效层（`sfx: { enabled, volume }`，默认开启）：切屏自动触发 `whoosh.wav`，`bullets/compare/flow/grid` 按 `itemTimings` 触发 `pop.wav`，`mockup/media` 触发 `click.wav`。
   - `tsc --noEmit` 0 错误，重新导出 `out/codex-rules-hooks.mp4`（5177 帧，18.8 MB），实测转场音效与全片无削波。
+- **2026-11-27（V4 组件库与动效全面升级验收：`out/components-showcase.mp4`）**：
+  - 新增 `AnimatedConnector`（SVG 贝塞尔画线 + 流动光点）、`HighlightText` `==荧光词==` 扫过动效、3 类新场景组件（`DiagramScene` 多路汇聚/中心辐射、`MetricsScene` KPI 卡/环形仪表盘/评测柱状图、`VerdictScene` 红叉绿勾强判定/玻璃胶囊聚光灯），并升级 `MediaScene`（多框 SVG 描边 + 手机壳 `phone` + 长图滚动）与 `GridScene`（`focusMode` 聚光灯模式）。
+  - 制作 10 屏双皮肤反转演示片 `content/components-showcase/storyboard.json` 并完成全屏抽帧目检与修复，导出 `out/components-showcase.mp4`（`h264 1920×1080 @ 30fps` + `aac 48kHz stereo`，`57.60s`，1728 帧，7.5 MB，音频峰值 `-14.7 dB` 无削波）。
