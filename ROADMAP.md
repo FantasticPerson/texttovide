@@ -84,3 +84,6 @@
   - 按 `WORKFLOW.md` 执行手动选风格（`warm-editorial` + 暗屏反转、`showChapterBar: false`），全自动跑通 2 张混元暖纸风配图（`medical-chart-copies.png` / `kitchen-handoff.png`）、本地 `Qwen3-TTS` 克隆 21 句本人旁白（`191.50s`）、单行同步字幕、微音效与 BGM 混音。
   - 抽帧目检 7 屏（顺手收紧 `03-diagram` 圆心标签避免折行），`ffprobe` / `volumedetect` 校验通过：`h264 1920×1080 @ 30fps` + `aac 48kHz stereo`，`191.51s`（5745 帧，22.4 MB，峰值 `-4.0 dB` 无削波）。
   - 修复 `src/styles/index.ts` 中 `resolveTheme(..., true)` 直接串切另一套风格包的 bug（改为同族明暗反转，保留原风格字体与强调色），同步更新 `WORKFLOW.md` 默认全片风格统一原则，并移除 `codex-worktrees` 全部 `invert: true` 重新导出纯暖纸红黑编辑风成片。
+- **2026-11-28（V5 2.5D 等距积木沙盘引擎集成验收：`out/iso-showcase.mp4`）**：
+  - 零外部 3D 依赖，在 `src/motion/iso/` 实现纯 SVG 等距投影数学与 6 类 2.5D 原子积木（`IsoBoard` / `IsoBox` / `IsoCylinder` / `IsoCallout` / `IsoLink` / `IsoPerson`），新增 3 类标准场景（`IsoBoardScene`、`IsoStackScene`、`IsoMetricsScene`），场景库扩充至 16 类并双皮肤通用。
+  - 制作 7 屏演示片 `content/iso-showcase/storyboard.json`，完成全屏抽帧目检与间距微调，导出 `out/iso-showcase.mp4`（`1920×1080 @ 30fps`，`41.7s`，1251 帧）。

@@ -206,6 +206,101 @@ export const VerdictSceneSchema = z.object({
     .max(5),
 });
 
+const IsoToneSchema = z.enum([
+  "blue",
+  "orange",
+  "green",
+  "purple",
+  "red",
+  "amber",
+  "neutral",
+]);
+
+export const IsoBoardSceneSchema = z.object({
+  ...baseSceneFields,
+  type: z.literal("iso-board"),
+  title: nonEmpty(26, "沙盘标题"),
+  caption: nonEmpty(30, "沙盘说明").optional(),
+  nodes: z
+    .array(
+      z.object({
+        x: z.number().min(0.5).max(9.5),
+        y: z.number().min(0.5).max(9.5),
+        shape: z.enum(["box", "cylinder"]).default("box"),
+        tone: IsoToneSchema.default("blue"),
+        size: z.number().min(0.8).max(3.5).optional(),
+        height: z.number().min(0.4).max(3.5).optional(),
+        topText: nonEmpty(8, "顶面短字").optional(),
+        label: nonEmpty(16, "标注名称").optional(),
+        sub: nonEmpty(20, "标注副说明").optional(),
+        stemHeight: z.number().min(20).max(120).optional(),
+        featured: z.boolean().optional(),
+      }),
+    )
+    .min(1)
+    .max(8),
+  links: z
+    .array(
+      z.object({
+        from: z.number().int().min(0),
+        to: z.number().int().min(0),
+        tone: IsoToneSchema.optional(),
+        dashed: z.boolean().optional(),
+        flowOrb: z.boolean().optional(),
+      }),
+    )
+    .max(12)
+    .optional(),
+});
+
+export const IsoStackSceneSchema = z.object({
+  ...baseSceneFields,
+  type: z.literal("iso-stack"),
+  title: nonEmpty(26, "堆叠标题"),
+  /** 顶层积木顶面大字（如 PG） */
+  topLabel: nonEmpty(8, "顶面标识").optional(),
+  layers: z
+    .array(
+      z.object({
+        label: nonEmpty(16, "层名称"),
+        from: nonEmpty(22, "被替换对象").optional(),
+        note: nonEmpty(28, "层说明").optional(),
+        tone: IsoToneSchema.default("blue"),
+      }),
+    )
+    .min(2)
+    .max(8),
+});
+
+export const IsoMetricsSceneSchema = z.object({
+  ...baseSceneFields,
+  type: z.literal("iso-metrics"),
+  title: nonEmpty(26, "沙盘数据标题"),
+  mode: z.enum(["crowd", "bars"]).default("crowd"),
+  caption: nonEmpty(30, "数据说明").optional(),
+  /** crowd 模式：点亮比例 0..100 */
+  percent: z.number().min(0).max(100).optional(),
+  crowdLabel: nonEmpty(16, "占比标签").optional(),
+  crowdSuffix: nonEmpty(6, "占比后缀").optional(),
+  tone: IsoToneSchema.optional(),
+  /** bars 模式：2.5D 立体柱状图项 */
+  bars: z
+    .array(
+      z.object({
+        label: nonEmpty(14, "柱名"),
+        value: z.number(),
+        max: z.number().positive().optional(),
+        prefix: nonEmpty(6, "前缀").optional(),
+        suffix: nonEmpty(8, "后缀").optional(),
+        tone: IsoToneSchema.optional(),
+        featured: z.boolean().optional(),
+      }),
+    )
+    .min(2)
+    .max(4)
+    .optional(),
+});
+
 export const OutroSceneSchema = z.object({
   ...baseSceneFields,
   type: z.literal("outro"),
@@ -226,6 +321,9 @@ export const SceneSchema = z.discriminatedUnion("type", [
   DiagramSceneSchema,
   MetricsSceneSchema,
   VerdictSceneSchema,
+  IsoBoardSceneSchema,
+  IsoStackSceneSchema,
+  IsoMetricsSceneSchema,
   OutroSceneSchema,
 ]);
 
@@ -267,6 +365,9 @@ export type MediaScene = z.infer<typeof MediaSceneSchema>;
 export type DiagramScene = z.infer<typeof DiagramSceneSchema>;
 export type MetricsScene = z.infer<typeof MetricsSceneSchema>;
 export type VerdictScene = z.infer<typeof VerdictSceneSchema>;
+export type IsoBoardScene = z.infer<typeof IsoBoardSceneSchema>;
+export type IsoStackScene = z.infer<typeof IsoStackSceneSchema>;
+export type IsoMetricsScene = z.infer<typeof IsoMetricsSceneSchema>;
 export type OutroScene = z.infer<typeof OutroSceneSchema>;
 export type Scene = z.infer<typeof SceneSchema>;
 export type Storyboard = z.infer<typeof StoryboardSchema>;

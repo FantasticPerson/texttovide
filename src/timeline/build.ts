@@ -68,6 +68,14 @@ function collectSceneItemTexts(scene: Scene): string[] {
       return scene.items.map((m) => `${m.label} ${m.note ?? ""}`);
     case "verdict":
       return scene.items.map((v) => `${v.label} ${v.detail ?? ""}`);
+    case "iso-board":
+      return scene.nodes.map((n, i) => n.label ?? n.topText ?? `节点${i + 1}`);
+    case "iso-stack":
+      return scene.layers.map((l) => `${l.from ?? ""} ${l.label} ${l.note ?? ""}`);
+    case "iso-metrics":
+      return scene.mode === "bars" && scene.bars?.length
+        ? scene.bars.map((b) => b.label)
+        : [scene.crowdLabel ?? scene.title];
     case "outro":
       return scene.subline
         ? [scene.conclusion, scene.subline]
@@ -83,6 +91,9 @@ function getSceneHeaderText(scene: Scene): string {
     case "media":
     case "diagram":
     case "metrics":
+    case "iso-board":
+    case "iso-stack":
+    case "iso-metrics":
       return `${scene.kicker ?? ""} ${scene.title}`;
     case "mockup":
     case "grid":
@@ -130,6 +141,12 @@ function estimateReadingSec(scene: Scene): number {
       return Math.max(5.0, Math.min(9.0, Number((rawSec * 0.76).toFixed(2))));
     case "verdict":
       return Math.max(4.8, Math.min(8.5, Number((rawSec * 0.78).toFixed(2))));
+    case "iso-board":
+      return Math.max(5.5, Math.min(9.5, Number((rawSec * 0.85).toFixed(2))));
+    case "iso-stack":
+      return Math.max(6.0, Math.min(11.0, Number((rawSec * 0.85).toFixed(2))));
+    case "iso-metrics":
+      return Math.max(4.5, Math.min(7.5, Number(rawSec.toFixed(2))));
     default:
       return Math.max(4.5, Math.min(10.0, Number(rawSec.toFixed(2))));
   }
@@ -177,9 +194,14 @@ function buildItemTimings(
     ];
   }
 
-  // grid 非聚光灯模式 & diagram 拓扑图快速错峰入场，让完整结构尽早呈现并保持光点流动
-  if ((scene.type === "grid" && !scene.focusMode) || scene.type === "diagram") {
-    const maxStep = scene.type === "diagram" ? Math.round(0.42 * fps) : Math.round(0.22 * fps);
+  // grid 非聚光灯模式 & diagram / iso-board 沙盘快速错峰入场，让完整结构尽早呈现并保持光点流动
+  if (
+    (scene.type === "grid" && !scene.focusMode) ||
+    scene.type === "diagram" ||
+    scene.type === "iso-board"
+  ) {
+    const maxStep =
+      scene.type === "grid" ? Math.round(0.22 * fps) : Math.round(0.38 * fps);
     const stepFrames = Math.max(
       4,
       Math.min(maxStep, Math.floor((activeSpan * 0.65) / texts.length)),

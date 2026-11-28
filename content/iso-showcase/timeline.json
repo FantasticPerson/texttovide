@@ -1,0 +1,453 @@
+{
+  "title": "2.5D 等距积木沙盘演示：6 个中间件，还是 1 个 PG？",
+  "theme": "warm-editorial",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "showChapterBar": false,
+  "totalFrames": 1251,
+  "totalSec": 41.7,
+  "bgm": {
+    "file": "bgm/tech-groove.wav",
+    "volume": 0.24,
+    "fadeInSec": 0.8,
+    "fadeOutSec": 1.6
+  },
+  "sfx": {
+    "enabled": true,
+    "volume": 1
+  },
+  "scenes": [
+    {
+      "scene": {
+        "id": "01",
+        "durationSec": 4,
+        "transition": "zoom",
+        "type": "hook",
+        "headline": "6 个中间件，还是 ==1 个 PG==？",
+        "subline": "纯 SVG **2.5D 等距沙盘**组件实测演示"
+      },
+      "index": 0,
+      "startFrame": 0,
+      "durationInFrames": 120,
+      "readingSec": 4,
+      "itemTimings": [
+        {
+          "startFrame": 6,
+          "endFrame": 35
+        },
+        {
+          "startFrame": 35,
+          "endFrame": 113
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "02",
+        "durationSec": 7.2,
+        "transition": "wipe",
+        "type": "iso-board",
+        "title": "传统 AI 项目：沙盘上堆满 **6 套系统**",
+        "caption": "六份运维 · 六套监控 · 六个半夜报警的地方",
+        "nodes": [
+          {
+            "x": 3.4,
+            "y": 1.6,
+            "shape": "cylinder",
+            "tone": "amber",
+            "height": 1.35,
+            "label": "MySQL",
+            "stemHeight": 46
+          },
+          {
+            "x": 1.5,
+            "y": 5,
+            "shape": "box",
+            "tone": "green",
+            "height": 1.4,
+            "label": "ES 检索",
+            "stemHeight": 46
+          },
+          {
+            "x": 6.6,
+            "y": 1.8,
+            "shape": "box",
+            "tone": "orange",
+            "height": 0.9,
+            "label": "Redis",
+            "stemHeight": 48
+          },
+          {
+            "x": 8.6,
+            "y": 4.6,
+            "shape": "box",
+            "tone": "neutral",
+            "height": 1,
+            "label": "RabbitMQ",
+            "stemHeight": 48
+          },
+          {
+            "x": 3.8,
+            "y": 7.8,
+            "shape": "cylinder",
+            "tone": "red",
+            "height": 1.3,
+            "label": "向量库",
+            "stemHeight": 42
+          },
+          {
+            "x": 6.8,
+            "y": 8,
+            "shape": "cylinder",
+            "tone": "purple",
+            "height": 1.25,
+            "label": "MongoDB",
+            "stemHeight": 42
+          }
+        ],
+        "links": [
+          {
+            "from": 0,
+            "to": 2,
+            "tone": "red"
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "tone": "red"
+          },
+          {
+            "from": 0,
+            "to": 1,
+            "tone": "red"
+          },
+          {
+            "from": 1,
+            "to": 4,
+            "tone": "red"
+          },
+          {
+            "from": 3,
+            "to": 5,
+            "tone": "red"
+          },
+          {
+            "from": 4,
+            "to": 5,
+            "tone": "red"
+          }
+        ]
+      },
+      "index": 1,
+      "startFrame": 120,
+      "durationInFrames": 216,
+      "readingSec": 7.2,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 209
+        },
+        {
+          "startFrame": 28,
+          "endFrame": 209
+        },
+        {
+          "startFrame": 39,
+          "endFrame": 209
+        },
+        {
+          "startFrame": 50,
+          "endFrame": 209
+        },
+        {
+          "startFrame": 61,
+          "endFrame": 209
+        },
+        {
+          "startFrame": 72,
+          "endFrame": 209
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "03",
+        "durationSec": 5.2,
+        "transition": "slide-left",
+        "type": "iso-metrics",
+        "title": "超过一半开发者已经在用 **PG**",
+        "mode": "crowd",
+        "caption": "10×10 极简小人矩阵按比例实时点亮",
+        "percent": 55,
+        "crowdLabel": "开发者占比",
+        "crowdSuffix": "%+",
+        "tone": "blue"
+      },
+      "index": 2,
+      "startFrame": 336,
+      "durationInFrames": 156,
+      "readingSec": 5.2,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 149
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "04",
+        "durationSec": 5.2,
+        "transition": "slide-up",
+        "type": "iso-metrics",
+        "title": "企业采用率两年涨到 **六成**",
+        "mode": "bars",
+        "caption": "2.5D 立体柱状图分层拔高对比",
+        "bars": [
+          {
+            "label": "2024 年",
+            "value": 54,
+            "max": 70,
+            "suffix": "%",
+            "tone": "neutral"
+          },
+          {
+            "label": "2026 年",
+            "value": 60,
+            "max": 70,
+            "prefix": "≈",
+            "suffix": "%",
+            "tone": "blue",
+            "featured": true
+          }
+        ]
+      },
+      "index": 3,
+      "startFrame": 492,
+      "durationInFrames": 156,
+      "readingSec": 5.2,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 70
+        },
+        {
+          "startFrame": 70,
+          "endFrame": 149
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "05",
+        "durationSec": 6.6,
+        "transition": "wipe",
+        "type": "iso-board",
+        "title": "AI 越会写，**PG 飞轮**转得越快",
+        "nodes": [
+          {
+            "x": 5,
+            "y": 5,
+            "shape": "box",
+            "tone": "blue",
+            "size": 2.3,
+            "height": 1,
+            "topText": "PG",
+            "featured": true
+          },
+          {
+            "x": 1.6,
+            "y": 1.6,
+            "shape": "box",
+            "tone": "amber",
+            "size": 1.25,
+            "height": 0.85,
+            "label": "生态成熟",
+            "stemHeight": 38
+          },
+          {
+            "x": 8.4,
+            "y": 1.6,
+            "shape": "box",
+            "tone": "neutral",
+            "size": 1.25,
+            "height": 0.85,
+            "label": "AI 一次写对",
+            "stemHeight": 38
+          },
+          {
+            "x": 8.4,
+            "y": 8.4,
+            "shape": "box",
+            "tone": "green",
+            "size": 1.25,
+            "height": 0.85,
+            "label": "更多项目采用",
+            "stemHeight": 22
+          },
+          {
+            "x": 1.6,
+            "y": 8.4,
+            "shape": "box",
+            "tone": "purple",
+            "size": 1.25,
+            "height": 0.85,
+            "label": "更多模板沉淀",
+            "stemHeight": 38
+          }
+        ],
+        "links": [
+          {
+            "from": 1,
+            "to": 2,
+            "tone": "blue"
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "tone": "blue"
+          },
+          {
+            "from": 3,
+            "to": 4,
+            "tone": "blue"
+          },
+          {
+            "from": 4,
+            "to": 1,
+            "tone": "blue"
+          }
+        ]
+      },
+      "index": 4,
+      "startFrame": 648,
+      "durationInFrames": 198,
+      "readingSec": 6.6,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 191
+        },
+        {
+          "startFrame": 28,
+          "endFrame": 191
+        },
+        {
+          "startFrame": 39,
+          "endFrame": 191
+        },
+        {
+          "startFrame": 50,
+          "endFrame": 191
+        },
+        {
+          "startFrame": 61,
+          "endFrame": 191
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "06",
+        "durationSec": 9.5,
+        "transition": "zoom",
+        "type": "iso-stack",
+        "title": "6 大能力逐层叠加，堆成一座 **PG 大楼**",
+        "topLabel": "PG",
+        "layers": [
+          {
+            "label": "pgmq",
+            "from": "RabbitMQ",
+            "note": "消息入队和业务同一个事务",
+            "tone": "blue"
+          },
+          {
+            "label": "pg_search",
+            "from": "Elasticsearch",
+            "note": "关键词加向量混合检索",
+            "tone": "blue"
+          },
+          {
+            "label": "JSONB",
+            "from": "MongoDB",
+            "note": "文档存储还能直接关联表",
+            "tone": "blue"
+          },
+          {
+            "label": "pgvector",
+            "from": "向量数据库",
+            "note": "向量和业务权限放一起",
+            "tone": "blue"
+          },
+          {
+            "label": "TimescaleDB",
+            "from": "ClickHouse",
+            "note": "时序与日志统计够用",
+            "tone": "blue"
+          },
+          {
+            "label": "PostGIS",
+            "from": "专用 GIS",
+            "note": "地理空间检索行业标准",
+            "tone": "blue"
+          }
+        ]
+      },
+      "index": 5,
+      "startFrame": 846,
+      "durationInFrames": 285,
+      "readingSec": 9.5,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 55
+        },
+        {
+          "startFrame": 55,
+          "endFrame": 99
+        },
+        {
+          "startFrame": 99,
+          "endFrame": 135
+        },
+        {
+          "startFrame": 135,
+          "endFrame": 175
+        },
+        {
+          "startFrame": 175,
+          "endFrame": 216
+        },
+        {
+          "startFrame": 216,
+          "endFrame": 278
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "07",
+        "durationSec": 4,
+        "transition": "fade",
+        "type": "outro",
+        "conclusion": "复杂度越低，**架构越好**",
+        "subline": "2.5D 等距沙盘组件已集成，双皮肤通用"
+      },
+      "index": 6,
+      "startFrame": 1131,
+      "durationInFrames": 120,
+      "readingSec": 4,
+      "itemTimings": [
+        {
+          "startFrame": 6,
+          "endFrame": 35
+        },
+        {
+          "startFrame": 35,
+          "endFrame": 113
+        }
+      ]
+    }
+  ]
+}

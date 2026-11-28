@@ -1,0 +1,122 @@
+{
+  "title": "2.5D 等距积木沙盘演示：6 个中间件，还是 1 个 PG？",
+  "theme": "warm-editorial",
+  "showChapterBar": false,
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "bgm": {
+    "file": "bgm/tech-groove.wav",
+    "volume": 0.24,
+    "fadeInSec": 0.8,
+    "fadeOutSec": 1.6
+  },
+  "sfx": {
+    "enabled": true,
+    "volume": 1
+  },
+  "scenes": [
+    {
+      "id": "01",
+      "type": "hook",
+      "transition": "zoom",
+      "headline": "6 个中间件，还是 ==1 个 PG==？",
+      "subline": "纯 SVG **2.5D 等距沙盘**组件实测演示",
+      "durationSec": 4.0
+    },
+    {
+      "id": "02",
+      "type": "iso-board",
+      "transition": "wipe",
+      "title": "传统 AI 项目：沙盘上堆满 **6 套系统**",
+      "caption": "六份运维 · 六套监控 · 六个半夜报警的地方",
+      "nodes": [
+        { "x": 3.4, "y": 1.6, "shape": "cylinder", "tone": "amber", "label": "MySQL", "height": 1.35, "stemHeight": 46 },
+        { "x": 1.5, "y": 5.0, "shape": "box", "tone": "green", "label": "ES 检索", "height": 1.4, "stemHeight": 46 },
+        { "x": 6.6, "y": 1.8, "shape": "box", "tone": "orange", "label": "Redis", "height": 0.9, "stemHeight": 48 },
+        { "x": 8.6, "y": 4.6, "shape": "box", "tone": "neutral", "label": "RabbitMQ", "height": 1.0, "stemHeight": 48 },
+        { "x": 3.8, "y": 7.8, "shape": "cylinder", "tone": "red", "label": "向量库", "height": 1.3, "stemHeight": 42 },
+        { "x": 6.8, "y": 8.0, "shape": "cylinder", "tone": "purple", "label": "MongoDB", "height": 1.25, "stemHeight": 42 }
+      ],
+      "links": [
+        { "from": 0, "to": 2, "tone": "red" },
+        { "from": 2, "to": 3, "tone": "red" },
+        { "from": 0, "to": 1, "tone": "red" },
+        { "from": 1, "to": 4, "tone": "red" },
+        { "from": 3, "to": 5, "tone": "red" },
+        { "from": 4, "to": 5, "tone": "red" }
+      ],
+      "durationSec": 7.2
+    },
+    {
+      "id": "03",
+      "type": "iso-metrics",
+      "transition": "slide-left",
+      "title": "超过一半开发者已经在用 **PG**",
+      "mode": "crowd",
+      "percent": 55,
+      "crowdLabel": "开发者占比",
+      "crowdSuffix": "%+",
+      "tone": "blue",
+      "caption": "10×10 极简小人矩阵按比例实时点亮",
+      "durationSec": 5.2
+    },
+    {
+      "id": "04",
+      "type": "iso-metrics",
+      "transition": "slide-up",
+      "title": "企业采用率两年涨到 **六成**",
+      "mode": "bars",
+      "bars": [
+        { "label": "2024 年", "value": 54, "max": 70, "suffix": "%", "tone": "neutral" },
+        { "label": "2026 年", "value": 60, "max": 70, "prefix": "≈", "suffix": "%", "tone": "blue", "featured": true }
+      ],
+      "caption": "2.5D 立体柱状图分层拔高对比",
+      "durationSec": 5.2
+    },
+    {
+      "id": "05",
+      "type": "iso-board",
+      "transition": "wipe",
+      "title": "AI 越会写，**PG 飞轮**转得越快",
+      "nodes": [
+        { "x": 5.0, "y": 5.0, "shape": "box", "tone": "blue", "size": 2.3, "height": 1.0, "topText": "PG", "featured": true },
+        { "x": 1.6, "y": 1.6, "shape": "box", "tone": "amber", "size": 1.25, "height": 0.85, "label": "生态成熟", "stemHeight": 38 },
+        { "x": 8.4, "y": 1.6, "shape": "box", "tone": "neutral", "size": 1.25, "height": 0.85, "label": "AI 一次写对", "stemHeight": 38 },
+        { "x": 8.4, "y": 8.4, "shape": "box", "tone": "green", "size": 1.25, "height": 0.85, "label": "更多项目采用", "stemHeight": 22 },
+        { "x": 1.6, "y": 8.4, "shape": "box", "tone": "purple", "size": 1.25, "height": 0.85, "label": "更多模板沉淀", "stemHeight": 38 }
+      ],
+      "links": [
+        { "from": 1, "to": 2, "tone": "blue" },
+        { "from": 2, "to": 3, "tone": "blue" },
+        { "from": 3, "to": 4, "tone": "blue" },
+        { "from": 4, "to": 1, "tone": "blue" }
+      ],
+      "durationSec": 6.6
+    },
+    {
+      "id": "06",
+      "type": "iso-stack",
+      "transition": "zoom",
+      "title": "6 大能力逐层叠加，堆成一座 **PG 大楼**",
+      "topLabel": "PG",
+      "layers": [
+        { "from": "RabbitMQ", "label": "pgmq", "note": "消息入队和业务同一个事务", "tone": "blue" },
+        { "from": "Elasticsearch", "label": "pg_search", "note": "关键词加向量混合检索", "tone": "blue" },
+        { "from": "MongoDB", "label": "JSONB", "note": "文档存储还能直接关联表", "tone": "blue" },
+        { "from": "向量数据库", "label": "pgvector", "note": "向量和业务权限放一起", "tone": "blue" },
+        { "from": "ClickHouse", "label": "TimescaleDB", "note": "时序与日志统计够用", "tone": "blue" },
+        { "from": "专用 GIS", "label": "PostGIS", "note": "地理空间检索行业标准", "tone": "blue" }
+      ],
+      "durationSec": 9.5
+    },
+    {
+      "id": "07",
+      "type": "outro",
+      "transition": "fade",
+      "conclusion": "复杂度越低，**架构越好**",
+      "subline": "2.5D 等距沙盘组件已集成，双皮肤通用",
+      "durationSec": 4.0
+    }
+  ]
+}

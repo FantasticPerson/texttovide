@@ -24,6 +24,9 @@ import { MediaScene } from "./scenes/MediaScene";
 import { DiagramScene } from "./scenes/DiagramScene";
 import { MetricsScene } from "./scenes/MetricsScene";
 import { VerdictScene } from "./scenes/VerdictScene";
+import { IsoBoardScene } from "./scenes/IsoBoardScene";
+import { IsoStackScene } from "./scenes/IsoStackScene";
+import { IsoMetricsScene } from "./scenes/IsoMetricsScene";
 import { OutroScene } from "./scenes/OutroScene";
 
 export type VideoProps = {
@@ -57,6 +60,12 @@ const renderSceneBody = (item: TimelineScene, theme: ThemeTokens) => {
       return <MetricsScene scene={scene} itemTimings={itemTimings} theme={theme} />;
     case "verdict":
       return <VerdictScene scene={scene} itemTimings={itemTimings} theme={theme} />;
+    case "iso-board":
+      return <IsoBoardScene scene={scene} itemTimings={itemTimings} theme={theme} />;
+    case "iso-stack":
+      return <IsoStackScene scene={scene} itemTimings={itemTimings} theme={theme} />;
+    case "iso-metrics":
+      return <IsoMetricsScene scene={scene} itemTimings={itemTimings} theme={theme} />;
     case "outro":
       return <OutroScene scene={scene} itemTimings={itemTimings} theme={theme} />;
   }
@@ -93,11 +102,14 @@ const renderSceneSfx = (
     type === "flow" ||
     type === "grid" ||
     type === "diagram" ||
-    type === "metrics"
+    type === "metrics" ||
+    type === "iso-board" ||
+    type === "iso-stack" ||
+    type === "iso-metrics"
   ) {
     itemFile = "sfx/pop.wav";
     itemVol = Math.min(1, 0.28 * sfxScale);
-    maxItems = 6;
+    maxItems = 8;
   } else if (type === "mockup" || type === "verdict") {
     itemFile = "sfx/click.wav";
     itemVol = Math.min(1, 0.24 * sfxScale);
