@@ -301,6 +301,29 @@ export const IsoMetricsSceneSchema = z.object({
     .optional(),
 });
 
+export const HandDrawSceneSchema = z.object({
+  ...baseSceneFields,
+  type: z.literal("hand-draw"),
+  title: nonEmpty(26, "手绘标题").optional(),
+  /** 单幅主图路径（相对 public/） */
+  image: z.string().min(1).optional(),
+  /** 双幅并列依次手绘（如左图人物 + 右图画卷/对比图） */
+  items: z
+    .array(
+      z.object({
+        image: z.string().min(1),
+        label: nonEmpty(18, "画面标注").optional(),
+      }),
+    )
+    .min(1)
+    .max(2)
+    .optional(),
+  /** 单幅手绘耗时（秒） */
+  drawSec: z.number().min(1.5).max(12).optional(),
+  showHand: z.boolean().default(true),
+  caption: nonEmpty(30, "底部说明").optional(),
+});
+
 export const OutroSceneSchema = z.object({
   ...baseSceneFields,
   type: z.literal("outro"),
@@ -324,6 +347,7 @@ export const SceneSchema = z.discriminatedUnion("type", [
   IsoBoardSceneSchema,
   IsoStackSceneSchema,
   IsoMetricsSceneSchema,
+  HandDrawSceneSchema,
   OutroSceneSchema,
 ]);
 
@@ -368,6 +392,7 @@ export type VerdictScene = z.infer<typeof VerdictSceneSchema>;
 export type IsoBoardScene = z.infer<typeof IsoBoardSceneSchema>;
 export type IsoStackScene = z.infer<typeof IsoStackSceneSchema>;
 export type IsoMetricsScene = z.infer<typeof IsoMetricsSceneSchema>;
+export type HandDrawScene = z.infer<typeof HandDrawSceneSchema>;
 export type OutroScene = z.infer<typeof OutroSceneSchema>;
 export type Scene = z.infer<typeof SceneSchema>;
 export type Storyboard = z.infer<typeof StoryboardSchema>;

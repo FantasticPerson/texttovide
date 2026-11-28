@@ -1,0 +1,59 @@
+{
+  "title": "手绘白板动画演示：线稿绘制 + Z 字上色 + 握笔手跟随",
+  "theme": "warm-editorial",
+  "showChapterBar": false,
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "bgm": {
+    "file": "bgm/tech-groove.wav",
+    "volume": 0.24,
+    "fadeInSec": 0.8,
+    "fadeOutSec": 1.4
+  },
+  "sfx": {
+    "enabled": true,
+    "volume": 1
+  },
+  "scenes": [
+    {
+      "id": "01",
+      "type": "hook",
+      "transition": "zoom",
+      "headline": "AI 插画变==手绘白板动画==全自动流水线",
+      "subline": "自动提线稿 · 笔尖轨迹跟踪 · Z 字涂色显露",
+      "durationSec": 3.5
+    },
+    {
+      "id": "02",
+      "type": "hand-draw",
+      "transition": "fade",
+      "title": "单幅手绘：**先勾深棕线稿**，再 Z 字上色",
+      "image": "assets/codex-worktrees/medical-chart-copies.png",
+      "drawSec": 4.8,
+      "caption": "全程无需 VideoScribe / 剪映手工关键帧",
+      "durationSec": 6.4
+    },
+    {
+      "id": "03",
+      "type": "hand-draw",
+      "transition": "slide-left",
+      "title": "双幅并列：**依次手绘**呈现前后对照",
+      "items": [
+        { "image": "assets/codex-worktrees/medical-chart-copies.png", "label": "隔离副本 · Worktree" },
+        { "image": "assets/codex-worktrees/kitchen-handoff.png", "label": "双向交接 · Handoff" }
+      ],
+      "drawSec": 3.5,
+      "caption": "支持单图与双图并列，自动适配暖纸/深空双皮肤",
+      "durationSec": 8.6
+    },
+    {
+      "id": "04",
+      "type": "outro",
+      "transition": "fade",
+      "conclusion": "现已支持 **17 类场景组件**一键出片",
+      "subline": "历史故事 · 人物科普 · 技术拆解全覆盖",
+      "durationSec": 3.5
+    }
+  ]
+}

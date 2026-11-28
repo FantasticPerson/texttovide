@@ -76,6 +76,10 @@ function collectSceneItemTexts(scene: Scene): string[] {
       return scene.mode === "bars" && scene.bars?.length
         ? scene.bars.map((b) => b.label)
         : [scene.crowdLabel ?? scene.title];
+    case "hand-draw":
+      return scene.items?.length
+        ? scene.items.map((it, i) => it.label ?? `手绘画幅${i + 1}`)
+        : [scene.title ?? "手绘主图"];
     case "outro":
       return scene.subline
         ? [scene.conclusion, scene.subline]
@@ -98,6 +102,7 @@ function getSceneHeaderText(scene: Scene): string {
     case "mockup":
     case "grid":
     case "verdict":
+    case "hand-draw":
       return `${scene.kicker ?? ""} ${scene.title ?? ""}`;
     default:
       return scene.kicker ?? "";
@@ -147,6 +152,8 @@ function estimateReadingSec(scene: Scene): number {
       return Math.max(6.0, Math.min(11.0, Number((rawSec * 0.85).toFixed(2))));
     case "iso-metrics":
       return Math.max(4.5, Math.min(7.5, Number(rawSec.toFixed(2))));
+    case "hand-draw":
+      return scene.items && scene.items.length >= 2 ? 8.5 : 6.2;
     default:
       return Math.max(4.5, Math.min(10.0, Number(rawSec.toFixed(2))));
   }

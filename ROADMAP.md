@@ -87,3 +87,6 @@
 - **2026-11-28（V5 2.5D 等距积木沙盘引擎集成验收：`out/iso-showcase.mp4`）**：
   - 零外部 3D 依赖，在 `src/motion/iso/` 实现纯 SVG 等距投影数学与 6 类 2.5D 原子积木（`IsoBoard` / `IsoBox` / `IsoCylinder` / `IsoCallout` / `IsoLink` / `IsoPerson`），新增 3 类标准场景（`IsoBoardScene`、`IsoStackScene`、`IsoMetricsScene`），场景库扩充至 16 类并双皮肤通用。
   - 制作 7 屏演示片 `content/iso-showcase/storyboard.json`，完成全屏抽帧目检与间距微调，导出 `out/iso-showcase.mp4`（`1920×1080 @ 30fps`，`41.7s`，1251 帧）。
+- **2026-11-28（V5.5 手绘白板动画引擎 `HandDrawScene` 集成验收：`out/handdraw-showcase.mp4`）**：
+  - 新增 `scripts/prepare-handdraw.py`（纯 Pillow + NumPy + SciPy Sobel 边缘提取深棕透明线稿 `.sketch.png` + 最近邻笔尖轨迹与 Z 字涂色路径 `.strokes.json`，零新增依赖），并接入 `scripts/run-pipeline.ts` 自动触发。
+  - 新增矢量握笔手 `src/motion/PenHand.tsx` 与 `src/scenes/HandDrawScene.tsx`（支持单幅与双幅并列依次手绘，两阶段 SVG 蒙版线稿显露 + Z 字上色），场景库扩充至 17 类，导出 `out/handdraw-showcase.mp4`（`1920×1080 @ 30fps`，`22.0s`）。

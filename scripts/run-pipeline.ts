@@ -44,11 +44,20 @@ if (!skipAssets && fs.existsSync(manifestPath)) {
 // 3. 校验分镜并计算基础时间轴
 run("scripts/build-timeline.ts", [slug, ...themeArgs]);
 
-// 3.5 若分镜含 narration 且本地已就绪 Qwen3-TTS 与本人参考音，自动合成克隆旁白并对齐时间轴
+// 3.2 若分镜含 hand-draw 场景，自动调用 Python 提取线稿层与手绘笔尖轨迹
 const ttsPy = path.resolve(process.cwd(), ".venv-tts", "bin", "python");
-const refWav = path.resolve(process.cwd(), "voice", "my-ref.wav");
 const sbPath = path.resolve(process.cwd(), "content", slug, "storyboard.json");
 const sbRaw = JSON.parse(fs.readFileSync(sbPath, "utf-8"));
+const hasHandDraw =
+  Array.isArray(sbRaw.scenes) &&
+  sbRaw.scenes.some((s: { type?: string }) => s.type === "hand-draw");
+if (hasHandDraw && fs.existsSync(ttsPy)) {
+  console.log(`\n▶ 运行 scripts/prepare-handdraw.py ${slug} (提取线稿与手绘轨迹)`);
+  execFileSync(ttsPy, ["scripts/prepare-handdraw.py", slug], { stdio: "inherit" });
+}
+
+// 3.5 若分镜含 narration 且本地已就绪 Qwen3-TTS 与本人参考音，自动合成克隆旁白并对齐时间轴
+const refWav = path.resolve(process.cwd(), "voice", "my-ref.wav");
 const hasNarration = Array.isArray(sbRaw.scenes) && sbRaw.scenes.some((s: { narration?: string[] }) => Array.isArray(s.narration) && s.narration.length > 0);
 if (hasNarration && fs.existsSync(ttsPy) && fs.existsSync(refWav)) {
   console.log(`\n▶ 运行 scripts/build-narration.py ${slug} (Qwen3-TTS 本人声音克隆)`);

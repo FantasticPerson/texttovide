@@ -1,0 +1,129 @@
+{
+  "title": "手绘白板动画演示：线稿绘制 + Z 字上色 + 握笔手跟随",
+  "theme": "warm-editorial",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "showChapterBar": false,
+  "totalFrames": 660,
+  "totalSec": 22,
+  "bgm": {
+    "file": "bgm/tech-groove.wav",
+    "volume": 0.24,
+    "fadeInSec": 0.8,
+    "fadeOutSec": 1.4
+  },
+  "sfx": {
+    "enabled": true,
+    "volume": 1
+  },
+  "scenes": [
+    {
+      "scene": {
+        "id": "01",
+        "durationSec": 3.5,
+        "transition": "zoom",
+        "type": "hook",
+        "headline": "AI 插画变==手绘白板动画==全自动流水线",
+        "subline": "自动提线稿 · 笔尖轨迹跟踪 · Z 字涂色显露"
+      },
+      "index": 0,
+      "startFrame": 0,
+      "durationInFrames": 105,
+      "readingSec": 3.5,
+      "itemTimings": [
+        {
+          "startFrame": 6,
+          "endFrame": 35
+        },
+        {
+          "startFrame": 35,
+          "endFrame": 98
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "02",
+        "durationSec": 6.4,
+        "transition": "fade",
+        "type": "hand-draw",
+        "title": "单幅手绘：**先勾深棕线稿**，再 Z 字上色",
+        "image": "assets/codex-worktrees/medical-chart-copies.png",
+        "drawSec": 4.8,
+        "showHand": true,
+        "caption": "全程无需 VideoScribe / 剪映手工关键帧"
+      },
+      "index": 1,
+      "startFrame": 105,
+      "durationInFrames": 192,
+      "readingSec": 6.4,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 185
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "03",
+        "durationSec": 8.6,
+        "transition": "slide-left",
+        "type": "hand-draw",
+        "title": "双幅并列：**依次手绘**呈现前后对照",
+        "items": [
+          {
+            "image": "assets/codex-worktrees/medical-chart-copies.png",
+            "label": "隔离副本 · Worktree"
+          },
+          {
+            "image": "assets/codex-worktrees/kitchen-handoff.png",
+            "label": "双向交接 · Handoff"
+          }
+        ],
+        "drawSec": 3.5,
+        "showHand": true,
+        "caption": "支持单图与双图并列，自动适配暖纸/深空双皮肤"
+      },
+      "index": 2,
+      "startFrame": 297,
+      "durationInFrames": 258,
+      "readingSec": 8.6,
+      "itemTimings": [
+        {
+          "startFrame": 17,
+          "endFrame": 124
+        },
+        {
+          "startFrame": 124,
+          "endFrame": 251
+        }
+      ]
+    },
+    {
+      "scene": {
+        "id": "04",
+        "durationSec": 3.5,
+        "transition": "fade",
+        "type": "outro",
+        "conclusion": "现已支持 **17 类场景组件**一键出片",
+        "subline": "历史故事 · 人物科普 · 技术拆解全覆盖"
+      },
+      "index": 3,
+      "startFrame": 555,
+      "durationInFrames": 105,
+      "readingSec": 3.5,
+      "itemTimings": [
+        {
+          "startFrame": 6,
+          "endFrame": 37
+        },
+        {
+          "startFrame": 37,
+          "endFrame": 98
+        }
+      ]
+    }
+  ]
+}

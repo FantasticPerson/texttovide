@@ -27,6 +27,7 @@ import { VerdictScene } from "./scenes/VerdictScene";
 import { IsoBoardScene } from "./scenes/IsoBoardScene";
 import { IsoStackScene } from "./scenes/IsoStackScene";
 import { IsoMetricsScene } from "./scenes/IsoMetricsScene";
+import { HandDrawScene } from "./scenes/HandDrawScene";
 import { OutroScene } from "./scenes/OutroScene";
 
 export type VideoProps = {
@@ -66,6 +67,8 @@ const renderSceneBody = (item: TimelineScene, theme: ThemeTokens) => {
       return <IsoStackScene scene={scene} itemTimings={itemTimings} theme={theme} />;
     case "iso-metrics":
       return <IsoMetricsScene scene={scene} itemTimings={itemTimings} theme={theme} />;
+    case "hand-draw":
+      return <HandDrawScene scene={scene} itemTimings={itemTimings} theme={theme} />;
     case "outro":
       return <OutroScene scene={scene} itemTimings={itemTimings} theme={theme} />;
   }
